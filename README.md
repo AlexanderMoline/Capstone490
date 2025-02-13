@@ -60,7 +60,7 @@ git push origin feature-name
 Click "Create Pull Request"
 4. Click **"Create Pull Request"**
 
-A team lead will **Review and Merge** the changes into the **main** branch.
+A team lead will **Review and Merge** the changes into the **main branch**.
    
 ## Authors  
 - [Alexander](https://github.com/AlexanderMoline)  
