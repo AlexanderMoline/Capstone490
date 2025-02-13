@@ -1,0 +1,53 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# Build artifacts
+dist/
+build/
+.cache/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor & IDE files
+.vscode/
+.idea/
+*.swp
+
+# Python-related files (if applicable)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.virtualenv/
+
+# Database files
+*.sqlite
+*.sqlite3
+db.sqlite3
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Debugging files
+debug.log
