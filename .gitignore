@@ -2,6 +2,8 @@
 node_modules/
 package-lock.json
 yarn.lock
+npm-debug.log
+yarn-error.log
 
 # Logs
 logs/
@@ -22,15 +24,32 @@ yarn-error.log*
 dist/
 build/
 .cache/
+/tmp
+/out-tsc
+/bazel-out
 
 # OS-specific files
 .DS_Store
 Thumbs.db
 
 # Editor & IDE files
-.vscode/
 .idea/
 *.swp
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # Python-related files (if applicable)
 __pycache__/
@@ -51,3 +70,12 @@ coverage/
 
 # Debugging files
 debug.log
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
