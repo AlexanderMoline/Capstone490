@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres
+    environment:
+      DB_USER: "${DB_USER}"
+      DB_HOST: "${DB_HOST}"
+      DB_NAME: "${DB_NAME}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+      DB_PORT: "${DB_PORT}"
+
+  app:
+    image: alexmoline/capstone:1.5
+    ports:
+      - 5010:8080
