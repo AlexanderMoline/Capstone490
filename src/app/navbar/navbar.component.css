@@ -1,6 +1,3 @@
-* {
-    font-family: Helvetica, sans-serif;
-}
 ul {
     list-style-type: none;
     margin: 0;
@@ -13,8 +10,8 @@ li {
 }
 li a {
     display: block;
-    color: white;
     text-align: center;
+    color: white;
     padding: 24px 30px;
     text-decoration: none;
 }
