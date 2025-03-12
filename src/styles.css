@@ -4,5 +4,8 @@ body {
     padding: 0;
     background-color: #282323;
     color: white;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Georgia', 'Times New Roman', Times, serif
+}
+h1 {
+    font-size: 48px;
 }
