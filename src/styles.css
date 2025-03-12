@@ -8,4 +8,8 @@ body {
 }
 h1 {
     font-size: 48px;
+    margin: 25px;
+}
+p {
+    margin: 25px;
 }
