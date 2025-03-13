@@ -127,6 +127,80 @@ app.get("/up/search", async (req, res) => {
     }
 });
 
+//Route to search both databases
+app.get("/persons/search", async (req, res) => {
+    try {
+        const { state, county, city, biological_sex, missing_age, race_ethnicity, sortBy, sortOrder, age_from, age_to } = req.query;
+
+        // Helper function to build query
+        const buildQuery = (tableName) => {
+            let query = `SELECT * FROM ${tableName} WHERE 1=1`;
+            const params = [];
+            
+            if (state) {
+                query += ` AND state = $${params.length + 1}`;
+                params.push(state);
+            }
+            if (county) {
+                query += ` AND county = $${params.length + 1}`;
+                params.push(county);
+            }
+            if (city) {
+                query += ` AND city = $${params.length + 1}`;
+                params.push(city);
+            }
+            if (biological_sex) {
+                query += ` AND biological_sex = $${params.length + 1}`;
+                params.push(biological_sex);
+            }
+            if (missing_age) {
+                query += ` AND missing_age = $${params.length + 1}`;
+                params.push(missing_age);
+            }
+            if (age_from) {
+                query += ` AND missing_age >= $${params.length + 1}`;
+                params.push(age_from);
+            }
+            if (age_to) {
+                query += ` AND missing_age <= $${params.length + 1}`;
+                params.push(age_to);
+            }
+            if (race_ethnicity) {
+                query += ` AND race_ethnicity = $${params.length + 1}`;
+                params.push(race_ethnicity);
+            }
+
+            // Handle sorting
+            if (sortBy) {
+                const order = sortOrder === 'desc' ? 'DESC' : 'ASC';
+                query += ` ORDER BY ${sortBy} ${order}`;
+            }
+
+            return { query, params };
+        };
+
+        // Build queries for both tables
+        const missingQuery = buildQuery('missing_persons');
+        const unidentifiedQuery = buildQuery('unidentified_persons');
+
+        // Execute both queries in parallel
+        const [missingResult, unidentifiedResult] = await Promise.all([
+            db.query(missingQuery.query, missingQuery.params),
+            db.query(unidentifiedQuery.query, unidentifiedQuery.params)
+        ]);
+
+        // Return separate results
+        res.json({
+            missing_persons: missingResult.rows,
+            unidentified_persons: unidentifiedResult.rows
+        });
+
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
+    }
+});
+
+
 //Route for specific missing_persons 
 app.get('/mp/:case_number', async (req, res) => {
     const { case_number } = req.params;
