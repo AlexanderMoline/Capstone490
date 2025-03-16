@@ -1,0 +1,12 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2926
+      POSTGRES_DB: camup
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./backup:/backup  # Mount backup folder for manual restoration
+    ports:
+      - "5432:5432"
