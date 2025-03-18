@@ -7,9 +7,9 @@ body {
     background: #282323;
     color: white;
 }
-h1 {
-    font-size: 48px;
-}
 .content {
     margin: 30px;
+}
+h1 {
+    text-align: center;
 }

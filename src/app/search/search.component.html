@@ -1,1 +1,128 @@
-<p>search works!</p>
+<h1>Search by Missing Persons</h1>
+
+<form>
+    <h2>Case Numbers</h2>
+    <div class="field-group">
+        <div>
+            <label for="namus#">NamUs #</label><br>
+            <input id="namus#" type="text"><br>
+        </div>
+        <div>
+            <label for="ncmec#">NCMEC #</label><br>
+            <input id="ncmec#" type="text"><br>
+        </div>
+    </div>
+
+    <h2>Demographics</h2>
+    <div class="field-group">
+        <div>
+            <label for="fname">Legal First Name</label><br>
+            <input id="fname" type="text"><br>
+        </div>
+        <div>
+            <label for="mname">Middle Name</label><br>
+            <input id="mname" type="text"><br>
+        </div>
+        <div>
+            <label for="lname">Legal Last Name</label><br>
+            <input id="lname" type="text"><br>
+        </div>
+    </div>
+    <div class="field-group">
+        <div>
+            <label for="nickname">Alias/Nickname</label><br>
+            <input id="nickname" type="text"><br>
+        </div>
+    </div>
+    <div class="field-group">
+        <div>
+            <label for="age-current">Current Age</label><br>
+            <input id="age-current" type="text"><br>
+        </div>
+        <div>
+            <label for="age-missing">Age Missing</label><br>
+            <input id="age-missing" type="text"><br>
+        </div>
+    </div>
+    <div class="field-group">
+        <div>
+            <label for="sex">Sex</label><br>
+            <select id="sex">
+                <option></option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+    </div>
+    <div class="field-group">
+        <div>
+            <label for="caucasian">White/Caucasian</label>
+            <input id="caucasian" type="checkbox">
+        </div>
+        <div>
+            <label for="black">Black/African American</label>
+            <input id="black" type="checkbox">
+        </div>
+        <div>
+            <label for="asian">Asian</label>
+            <input id="asian" type="checkbox">
+        </div>
+        <div>
+            <label for="pacific-islander">Hawaiian/Pacific Islander</label>
+            <input id="pacific-islander" type="checkbox">
+        </div>
+        <div>
+            <label for="hispanic">Hispanic/Latino</label>
+            <input id="hispanic" type="checkbox">
+        </div>
+        <div>
+            <label for="american-indian">American Indian/Native Alaskan</label>
+            <input id="american-indian" type="checkbox">
+        </div>
+        <div>
+            <label for="other">Other</label>
+            <input id="other" type="checkbox">
+        </div>
+    </div>
+    <div class="field-group">
+        <div>
+            <label for="tribal-affiliation">Tribal Affiliation</label><br>
+            <select id="tribal-affiliation">
+                <option></option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+    </div>
+    
+    <h2>Physical Appearance</h2>
+    
+    <h2>Circumstances</h2>
+    <div class="field-group">
+        <div>
+            <label for="date-last-contact">Date of last contact</label><br>
+            <input id="date-last-contact" type="date">
+        </div>
+    </div>
+    <div class="field-group" style="padding-bottom: 2px">
+        <label>Last Known Location</label>
+    </div>
+    <div class="field-group" style="padding-top: 2px">
+        <div>
+            <label for="state-last">State</label><br>
+            <input id="state-last" type="text">
+        </div>
+        <div>
+            <label for="city-last">City</label><br>
+            <input id="city-last" type="text">
+        </div>
+        <div>
+            <label for="county-last">County/Parish</label><br>
+            <input id="county-last" type="text">
+        </div>
+    </div>
+    <div class="submit-button">
+        <input type="submit" value="Search">
+    </div>
+</form>
