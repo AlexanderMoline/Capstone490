@@ -1,8 +1,8 @@
 .field-group {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    max-width: 10in;
+    justify-content: space-between;
+    max-width: 7in;
     padding: 20px;
     margin-left: 1cm;
     background: #4e4444;
@@ -10,6 +10,6 @@
 .submit-button {
     display: flex;
     justify-content: center;
-    max-width: 10in;
+    max-width: 7in;
     padding: 20px;
 }
