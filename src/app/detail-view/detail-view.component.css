@@ -1,0 +1,40 @@
+.main-container {
+    max-width: 10in;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #3e3939;
+    padding: 25px;
+}
+.details {
+    width: 100%;
+}
+.section-header h2 {
+    margin-bottom: 0;
+}
+.detail-row {
+    width: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin: 20px;
+}
+.attribute {
+    width: 3in;
+}
+button {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+a {
+    color: white;
+}
+span {
+    font-weight: bold;
+}
+img {
+    display: block;
+    margin: auto;
+}

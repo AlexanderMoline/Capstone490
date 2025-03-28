@@ -1,7 +1,10 @@
+.table {
+    max-width: 7in;
+    margin: auto;
+}
 table {
     border-collapse: collapse;
-    width: 25%;
-    margin: auto;
+    width: 100%;
 }
 th, td {
     padding: 10px;
