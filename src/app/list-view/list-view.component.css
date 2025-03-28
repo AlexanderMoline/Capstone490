@@ -1,0 +1,18 @@
+table {
+    border-collapse: collapse;
+    width: 25%;
+    margin: auto;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+tr:first-child:hover {
+    background-color: #282323;
+}
+tr:nth-child(even) {
+    background-color: #3e3939;
+}
+tr:hover {
+    background-color: #600707;
+}
