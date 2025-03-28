@@ -4,7 +4,6 @@
     justify-content: space-between;
     max-width: 7in;
     padding: 20px;
-    margin-left: 1cm;
     background: #4e4444;
 }
 .submit-button {
@@ -12,4 +11,8 @@
     justify-content: center;
     max-width: 7in;
     padding: 20px;
+}
+form {
+    width:fit-content;
+    margin: auto;
 }

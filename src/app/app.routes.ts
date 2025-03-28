@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
 import { SearchComponent } from './search/search.component';
 import { ContactComponent } from './contact/contact.component';
+import { ListViewComponent } from './list-view/list-view.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,11 @@ export const routes: Routes = [
     {
         path: 'search',
         component: SearchComponent,
+        title: 'CAMUP - Search'
+    },
+    {
+        path: 'search/results',
+        component: ListViewComponent,
         title: 'CAMUP - Search'
     },
     {
