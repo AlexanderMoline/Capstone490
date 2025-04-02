@@ -1,8 +1,11 @@
 import express from 'express';
 import db from './db.js'; 
 
+import cors from 'cors';
 const app = express();
 const port = 3000;
+
+app.use(cors()); // Enable CORS
 
 app.get("/home", (req, res) => {
     res.send("Server is ready");
