@@ -20,6 +20,7 @@ yarn-error.log*
 .env.test
 .env.*.local
 
+
 # Build artifacts
 dist/
 build/
@@ -63,6 +64,8 @@ venv/
 *.sqlite
 *.sqlite3
 db.sqlite3
+pgdata/
+postgres_data/
 
 # Coverage reports
 coverage/

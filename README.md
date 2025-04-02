@@ -60,6 +60,13 @@ git push origin feature-name
 Click "Create Pull Request"
 4. Click **"Create Pull Request"**
 
+### 6. Docker set up
+1. After pulling, make sure you have docker desktop installed: https://docs.docker.com/compose/install/
+2. Navigate to \backend and run the following command: **docker-compose up --build**
+3. Verify the database using the following command: **docker exec -it backend-db-1 psql -U postgres -d camup** Use **\dt** to view a list tables
+4. If the db was not initialized attempt manual restoration with the following command: **docker exec -it backend-db-1 pg_restore -U postgres -d camup ./backend/backup.tar**
+
+
 A team lead will **Review and Merge** the changes into the **main branch**.
    
 ## Authors  
