@@ -1,0 +1,26 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #600707;
+}
+li {
+    float: left;
+}
+li a {
+    display: block;
+    text-align: center;
+    color: white;
+    padding: 24px 30px;
+    text-decoration: none;
+}
+.logo li {
+    vertical-align: middle;
+}
+.logo li a {
+    padding: 0px;
+}
+.pages li a:hover {
+    background-color: #460505;
+}
