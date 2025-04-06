@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DataService } from '../data.service';
+import { BackendService } from '../backend.service';
 import { NgFor } from '@angular/common';
 
 @Component({
@@ -12,23 +12,35 @@ import { NgFor } from '@angular/common';
 export class ListViewComponent implements OnInit, OnDestroy {
   missing_persons: any[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private backendService: BackendService) { }
 
   onClick() {
-    this.dataService.getData().subscribe(
-      data => this.missing_persons = data,
-      error => console.error('Error fetching data:', error)
-    );
+    if (this.backendService.searchMissingResult != null) {
+      this.backendService.searchMissingResult.subscribe(
+        data => this.missing_persons = data,
+        error => console.error('Error fetching data:', error)
+      );
+    }
   }
 
   ngOnInit() {
-    var json = localStorage.getItem('missing_persons');
-    if (json != null) {
-      this.missing_persons = JSON.parse(json);
+    if (this.backendService.searchMissingResult != null) {
+      // Retrieve results of search from backend service
+      this.backendService.searchMissingResult.subscribe(
+        data => this.missing_persons = data,
+        error => console.error('Error fetching data:', error)
+      );
+    } else {
+      // Restore previous table data from browser cache
+      var json = localStorage.getItem('missing_persons');
+      if (json != null) {
+        this.missing_persons = JSON.parse(json);
+      }
     }
   }
 
   ngOnDestroy() {
+    // Store table data in browser cache
     localStorage.setItem('missing_persons', JSON.stringify(this.missing_persons));
   }
 }
