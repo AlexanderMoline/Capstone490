@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DataService } from '../data.service';
 import { NgFor } from '@angular/common';
@@ -9,7 +9,7 @@ import { NgFor } from '@angular/common';
   templateUrl: './list-view.component.html',
   styleUrl: './list-view.component.css'
 })
-export class ListViewComponent {
+export class ListViewComponent implements OnInit, OnDestroy {
   missing_persons: any[] = [];
 
   constructor(private dataService: DataService) { }
@@ -19,5 +19,16 @@ export class ListViewComponent {
       data => this.missing_persons = data,
       error => console.error('Error fetching data:', error)
     );
+  }
+
+  ngOnInit() {
+    var json = localStorage.getItem('missing_persons');
+    if (json != null) {
+      this.missing_persons = JSON.parse(json);
+    }
+  }
+
+  ngOnDestroy() {
+    localStorage.setItem('missing_persons', JSON.stringify(this.missing_persons));
   }
 }
