@@ -4,13 +4,15 @@
     <table>
         <tr>
             <th>Case #</th>
-            <th>Name</th>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Last seen</th>
         </tr>
         <tr *ngFor="let person of missing_persons">
             <td><a routerLink="/search/detail">{{ person.case_number }}</a></td>
             <td>{{ person.first_name }}</td>
             <td>{{ person.last_name }}</td>
+            <td>{{ person.last_seen_date }}</td>
         </tr>
     </table>
 </div>

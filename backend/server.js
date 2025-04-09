@@ -68,7 +68,7 @@ app.get("/mp/search", async (req, res) => {
             params.push(missing_age);
         }
         if (race_ethnicity) {
-            query += ` AND mp.race_ethnicity = $${params.length + 1}`;
+            query += ` AND mp.race_or_ethnicity = $${params.length + 1}`;
             params.push(race_ethnicity);
         }
 
