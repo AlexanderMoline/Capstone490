@@ -34,7 +34,7 @@ app.get("/test", async (req, res) => {
 app.get("/mp/search", async (req, res) => {
     try {
         const { 
-            state, county, city, biological_sex, missing_age, race_ethnicity, 
+            case_number, ncmec_number, first_name, middle_name, last_name, state, county, city, biological_sex, missing_age, current_age, race_ethnicity, tribal_affiliation,
             height_min, height_max, weight, eye_color, hair_color, sortBy, sortOrder 
         } = req.query;
 
@@ -47,6 +47,26 @@ app.get("/mp/search", async (req, res) => {
         `;
         const params = [];
 
+        if (case_number) {
+            query += ` AND mp.case_number = $${params.length + 1}`;
+            params.push(case_number);
+        }
+        if (ncmec_number) {
+            query += ` AND mp.ncmec_number = $${params.length + 1}`;
+            params.push(ncmec_number);
+        }
+        if (first_name) {
+            query += ` AND mp.first_name = $${params.length + 1}`;
+            params.push(first_name);
+        }
+        if (middle_name) {
+            query += ` AND mp.middle_name = $${params.length + 1}`;
+            params.push(middle_name);
+        }
+        if (last_name) {
+            query += ` AND mp.last_name = $${params.length + 1}`;
+            params.push(last_name);
+        }
         if (state) {
             query += ` AND mp.state = $${params.length + 1}`;
             params.push(state);
@@ -67,9 +87,17 @@ app.get("/mp/search", async (req, res) => {
             query += ` AND mp.missing_age = $${params.length + 1}`;
             params.push(missing_age);
         }
+        if (current_age) {
+            query += ` AND mp.current_age = $${params.length + 1}`;
+            params.push(current_age);
+        }
         if (race_ethnicity) {
             query += ` AND mp.race_or_ethnicity = $${params.length + 1}`;
             params.push(race_ethnicity);
+        }
+        if (tribal_affiliation) {
+            query += ` AND mp.tribal_affiliation = $${params.length + 1}`;
+            params.push(tribal_affiliation);
         }
 
         if (height_min && height_max) {
