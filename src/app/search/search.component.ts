@@ -33,14 +33,19 @@ export class SearchComponent {
   });
 
   onSubmit() {
-    this.addControlToSearch('state', 'stateLast');
-    this.addControlToSearch('city', 'cityLast');
+    this.searchParams.clear();
+    this.addControlToSearch('sex', 'biological_sex');
+    this.addControlToSearch('race', 'race_ethnicity');
+    this.addControlToSearch('ageMissing', 'missing_age');
+    this.addControlToSearch('stateLast', 'state');
+    this.addControlToSearch('cityLast', 'city');
+    this.addControlToSearch('countyLast', 'county');
     var url = this.backendService.constructSearchMissingUrl(this.searchParams);
     console.log(url);
     this.backendService.getData(url);
   }
   
-  private addControlToSearch(parameterName: string, controlName: string) {
+  private addControlToSearch(controlName: string, parameterName: string) {
     var controlValue = this.search.get(controlName)?.value;
 
     if (controlValue != null) { this.searchParams.set(parameterName, controlValue); }
