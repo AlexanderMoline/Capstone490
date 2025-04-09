@@ -17,6 +17,16 @@ export class BackendService {
     this.searchMissingResult = this.http.get<any[]>(url);
   }
 
+  getCaseDetails(caseNumber: string): Observable<any> {
+    const url = `${this.baseUrl}/mp/${caseNumber}`;
+    return this.http.get<any>(url);
+  }
+
+  getUnidentifiedDetails(namusNumber: string): Observable<any> {
+    const url = `${this.baseUrl}/up/${namusNumber}`;
+    return this.http.get<any>(url);
+  }
+  
   constructSearchMissingUrl(parameters: Map<string, string>): string {
     var url = this.baseUrl + '/mp/search?';
     for (var parameter of parameters) {

@@ -34,7 +34,7 @@ export const routes: Routes = [
         title: 'CAMUP - Search'
     },
     {
-        path: 'search/detail',
+        path: 'search/results/:case_number',
         component: DetailViewComponent,
         title: 'CAMUP - Case details'
     },
