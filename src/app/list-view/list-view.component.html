@@ -9,13 +9,6 @@
             <th>Last seen</th>
         </tr>
         <tr *ngFor="let person of missing_persons">
-            <td>
-                <a [routerLink]="['/search/results', person.case_number]">
-                  {{ person.case_number }}
-                </a>
-              </td>
-                          <td>{{ person.first_name }}</td>
-
             <td><a routerLink="/search/detail">{{ person.case_number }}</a></td>
             <td>{{ person.first_name }}</td>
             <td>{{ person.last_name }}</td>
