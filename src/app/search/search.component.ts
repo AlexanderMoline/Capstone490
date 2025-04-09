@@ -20,7 +20,6 @@ export class SearchComponent {
     firstName: new FormControl(''),
     middleName: new FormControl(''),
     lastName: new FormControl(''),
-    nickname: new FormControl(''),
     ageCurrent: new FormControl(''),
     ageMissing: new FormControl(''),
     sex: new FormControl(''),
@@ -34,9 +33,16 @@ export class SearchComponent {
 
   onSubmit() {
     this.searchParams.clear();
+    this.addControlToSearch('namusNum', 'case_number');
+    this.addControlToSearch('ncmecNum', 'ncmec_number')
+    this.addControlToSearch('firstName', 'first_name');
+    this.addControlToSearch('middleName', 'middle_name');
+    this.addControlToSearch('lastName', 'last_name');
     this.addControlToSearch('sex', 'biological_sex');
     this.addControlToSearch('race', 'race_ethnicity');
+    this.addControlToSearch('tribalAffiliation', 'tribal_affiliation');
     this.addControlToSearch('ageMissing', 'missing_age');
+    this.addControlToSearch('ageCurrent', 'current_age');
     this.addControlToSearch('stateLast', 'state');
     this.addControlToSearch('cityLast', 'city');
     this.addControlToSearch('countyLast', 'county');
