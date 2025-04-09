@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-detail-view',
-  standalone: true,
   imports: [NgOptimizedImage, RouterLink],
   templateUrl: './detail-view.component.html',
   styleUrl: './detail-view.component.css'
