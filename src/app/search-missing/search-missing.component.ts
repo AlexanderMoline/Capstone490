@@ -4,12 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BackendService } from '../backend.service';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-missing',
   imports: [ RouterLink, ReactiveFormsModule ],
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  templateUrl: './search-missing.component.html',
+  styleUrl: './search-missing.component.css'
 })
-export class SearchComponent {
+export class SearchMissingComponent {
   constructor(private backendService: BackendService) { }
 
   private searchParams: Map<string, string> = new Map();

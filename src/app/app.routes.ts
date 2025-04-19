@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { FaqComponent } from './faq/faq.component';
-import { SearchComponent } from './search/search.component';
+import { SearchMissingComponent } from './search-missing/search-missing.component';
 import { ContactComponent } from './contact/contact.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
@@ -25,7 +25,7 @@ export const routes: Routes = [
     },
     {
         path: 'search',
-        component: SearchComponent,
+        component: SearchMissingComponent,
         title: 'CAMUP - Search'
     },
     {
