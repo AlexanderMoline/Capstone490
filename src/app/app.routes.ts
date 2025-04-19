@@ -6,6 +6,7 @@ import { SearchMissingComponent } from './search-missing/search-missing.componen
 import { ContactComponent } from './contact/contact.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
+import { SearchUnidentifiedComponent } from './search-unidentified/search-unidentified.component';
 
 export const routes: Routes = [
     {
@@ -24,8 +25,13 @@ export const routes: Routes = [
         title: 'CAMUP - Frequently Asked Questions'
     },
     {
-        path: 'search',
+        path: 'search/mp',
         component: SearchMissingComponent,
+        title: 'CAMUP - Search'
+    },
+    {
+        path: 'search/up',
+        component: SearchUnidentifiedComponent,
         title: 'CAMUP - Search'
     },
     {

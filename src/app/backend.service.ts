@@ -27,7 +27,7 @@ export class BackendService {
     return this.http.get<any>(url);
   }
   
-  constructSearchMissingUrl(parameters: Map<string, string>): string {
+  constructSearchUrl(parameters: Map<string, string>): string {
     var url = this.baseUrl + '/mp/search?';
     for (var parameter of parameters) {
       if (parameter[1] != '') {
