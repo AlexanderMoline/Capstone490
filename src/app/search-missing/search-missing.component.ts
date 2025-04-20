@@ -46,7 +46,7 @@ export class SearchMissingComponent {
     this.addControlToSearch('stateLast', 'state');
     this.addControlToSearch('cityLast', 'city');
     this.addControlToSearch('countyLast', 'county');
-    var url = this.backendService.constructSearchUrl(this.searchParams);
+    var url = this.backendService.constructSearchUrl(this.searchParams, 'mp');
     console.log(url);
     this.backendService.getData(url);
   }

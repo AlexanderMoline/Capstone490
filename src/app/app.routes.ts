@@ -35,12 +35,12 @@ export const routes: Routes = [
         title: 'CAMUP - Search'
     },
     {
-        path: 'search/results',
+        path: 'search/:table/results',
         component: ListViewComponent,
         title: 'CAMUP - Search'
     },
     {
-        path: 'search/results/:case_number',
+        path: 'search/:table/results/:case_number',
         component: DetailViewComponent,
         title: 'CAMUP - Case details'
     },

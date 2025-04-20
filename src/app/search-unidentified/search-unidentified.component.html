@@ -1,1 +1,80 @@
-<p>search-unidentified works!</p>
+<h1>Search by Unidentified Persons</h1>
+
+<form [formGroup]="search">
+    <h2>Case Numbers</h2>
+    <div class="field-group">
+        <div>
+            <label for="namus#">Namus #</label><br>
+            <input id="namus#" type="text" formControlName="namusNum"><br>
+        </div>
+        <div>
+            <label for="case#">Case #</label><br>
+            <input id="case#" type="text" formControlName="caseNum"><br>
+        </div>
+        <div>
+            <label for="ncmec#">NCMEC #</label><br>
+            <input id="ncmec#" type="text" formControlName="ncmecNum"><br>
+        </div>
+    </div>
+
+    <h2>Demographics</h2>
+    <div class="field-group">
+        <div>
+            <label for="age-from">Estimated Age</label><br>
+            <input id="age-from" type="text" size="3" formControlName="ageFrom"> to
+            <input id="age-to" type="text" size="3" formControlName="ageTo"><br>
+        </div>
+        <div>
+            <label for="sex">Sex</label><br>
+            <select id="sex" formControlName="sex">
+                <option></option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Unsure">Other/Unknown</option>
+            </select>
+        </div>
+        <div>
+            <label for="race">Race</label><br>
+            <select id="race" formControlName="race">
+                <option></option>
+                <option value="White / Caucasian">White/Caucasian</option>
+                <option value="Black / African American">Black/African American</option>
+                <option value="Asian">Asian</option>
+                <option value="Hawaiian / Pacific Islander">Hawaiian/Pacific Islander</option>
+                <option value="Hispanic / Latino">Hispanic/Latino</option>
+                <option value="American Indian / Alaska Native">American Indian/Native Alaskan</option>
+                <option value="Unknown">Other/Unknown</option>
+            </select>
+        </div>
+    </div>
+    
+    <h2>Physical Appearance</h2>
+    
+    <h2>Circumstances</h2>
+    <div class="field-group" style="justify-content: space-around">
+        <div>
+            <label for="date">Date found</label><br>
+            <input id="date" type="date" formControlName="date">
+        </div>
+    </div>
+    <div class="field-group" style="padding-bottom: 2px">
+        <label>Location found:</label>
+    </div>
+    <div class="field-group">
+        <div>
+            <label for="state">State</label><br>
+            <input id="state" type="text" formControlName="state">
+        </div>
+        <div>
+            <label for="city">City</label><br>
+            <input id="city" type="text" formControlName="city">
+        </div>
+        <div>
+            <label for="county">County/Parish</label><br>
+            <input id="county" type="text" formControlName="county">
+        </div>
+    </div>
+    <div class="submit-button">
+        <button (click)="onSubmit()" routerLink="/search/up/results" type="submit">Search</button>
+    </div>
+</form>

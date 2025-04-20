@@ -17,3 +17,22 @@ h2 {
     font-size: 24px;
     font-weight: bold;
 }
+
+.field-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 7in;
+    padding: 20px;
+    background: #3e3939
+}
+.submit-button {
+    display: flex;
+    justify-content: center;
+    max-width: 7in;
+    padding: 20px;
+}
+form {
+    width: fit-content;
+    margin: auto;
+}

@@ -16,6 +16,7 @@ export class SearchUnidentifiedComponent {
 
   search = new FormGroup({
     namusNum: new FormControl(''),
+    caseNum: new FormControl(''),
     ncmecNum: new FormControl(''),
     ageFrom: new FormControl(''),
     ageTo: new FormControl(''),
@@ -33,13 +34,13 @@ export class SearchUnidentifiedComponent {
     this.addControlToSearch('caseNum', 'case_number')
     this.addControlToSearch('ncmecNum', 'ncmec_number');
     this.addControlToSearch('sex', 'biological_sex');
-    this.addControlToSearch('race', 'race_ethnicity');
+    this.addControlToSearch('race', 'primary_ethnicity');
     this.addControlToSearch('ageFrom', 'age_from');
     this.addControlToSearch('ageTo', 'age_to');
     this.addControlToSearch('state', 'state');
     this.addControlToSearch('city', 'city');
     this.addControlToSearch('county', 'county');
-    var url = this.backendService.constructSearchUrl(this.searchParams);
+    var url = this.backendService.constructSearchUrl(this.searchParams, 'up');
     console.log(url);
     this.backendService.getData(url);
   }
