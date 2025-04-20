@@ -7,7 +7,6 @@ import { BackendService } from '../backend.service';
   selector: 'app-search-missing',
   imports: [ RouterLink, ReactiveFormsModule ],
   templateUrl: './search-missing.component.html',
-  styleUrl: './search-missing.component.css'
 })
 export class SearchMissingComponent {
   constructor(private backendService: BackendService) { }

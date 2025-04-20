@@ -36,3 +36,6 @@ form {
     width: fit-content;
     margin: auto;
 }
+select {
+    width: 3cm;
+}

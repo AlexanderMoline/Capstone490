@@ -7,7 +7,6 @@ import { BackendService } from '../backend.service';
   selector: 'app-search-unidentified',
   imports: [ RouterLink, ReactiveFormsModule ],
   templateUrl: './search-unidentified.component.html',
-  styleUrl: './search-unidentified.component.css'
 })
 export class SearchUnidentifiedComponent {
   constructor(private backendService: BackendService) { }

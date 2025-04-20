@@ -7,6 +7,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
 import { SearchUnidentifiedComponent } from './search-unidentified/search-unidentified.component';
+import { SearchComparisonComponent } from './search-comparison/search-comparison.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,11 @@ export const routes: Routes = [
     {
         path: 'search/up',
         component: SearchUnidentifiedComponent,
+        title: 'CAMUP - Search'
+    },
+    {
+        path: 'search/persons',
+        component: SearchComparisonComponent,
         title: 'CAMUP - Search'
     },
     {
