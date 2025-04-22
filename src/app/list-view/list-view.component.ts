@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BackendService } from '../backend.service';
 import { NgFor } from '@angular/common';
 
@@ -9,10 +9,11 @@ import { NgFor } from '@angular/common';
   templateUrl: './list-view.component.html',
   styleUrl: './list-view.component.css'
 })
-export class ListViewComponent implements OnInit, OnDestroy {
+export class ListViewComponent implements OnInit, OnDestroy {  
+  table: string | null = null;
   missing_persons: any[] = [];
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService, private route: ActivatedRoute) { }
 
   onClick() {
     if (this.backendService.searchMissingResult != null) {
@@ -24,6 +25,9 @@ export class ListViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Get name of table being searched from url parameters
+    this.table = this.route.snapshot.paramMap.get('table');
+
     if (this.backendService.searchMissingResult != null) {
       // Retrieve results of search from backend service
       this.backendService.searchMissingResult.subscribe(

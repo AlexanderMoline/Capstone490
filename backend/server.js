@@ -139,7 +139,7 @@ app.get("/up/search", async (req, res) => {
     try {
         const { 
             state, county, city, biological_sex, missing_age, age_from, age_to, 
-            race_ethnicity, height_min, height_max, weight, eye_color, hair_color, sortBy, sortOrder 
+            primary_ethnicity, height_min, height_max, weight, eye_color, hair_color, sortBy, sortOrder 
         } = req.query;
 
         let query = `
@@ -183,9 +183,9 @@ app.get("/up/search", async (req, res) => {
             params.push(age_to);
         }
 
-        if (race_ethnicity) {
-            query += ` AND up.race_ethnicity = $${params.length + 1}`;
-            params.push(race_ethnicity);
+        if (primary_ethnicity) {
+            query += ` AND up.primary_ethnicity = $${params.length + 1}`;
+            params.push(primary_ethnicity);
         }
 
         if (height_min && height_max) {

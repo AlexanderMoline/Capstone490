@@ -2,21 +2,41 @@
 
 <div class="table">
     <table>
-        <tr>
-            <th>Case #</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Last seen</th>
-        </tr>
-        <tr *ngFor="let person of missing_persons">
-            <td>
-                <a [routerLink]="['/search/results', person.case_number]">
-                  {{ person.case_number }}
-                </a>
-            </td>
-            <td>{{ person.first_name }}</td>
-            <td>{{ person.last_name }}</td>
-            <td>{{ person.last_seen_date }}</td>
-        </tr>
+        @if (this.table == 'mp') {
+            <tr>
+                <th>Case #</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Last seen</th>
+            </tr>
+            <tr *ngFor="let person of missing_persons">
+                <td>
+                    <a [routerLink]="['/search/mp/results', person.case_number]">
+                      {{ person.case_number }}
+                    </a>
+                </td>
+                <td>{{ person.first_name }}</td>
+                <td>{{ person.last_name }}</td>
+                <td>{{ person.last_seen_date }}</td>
+            </tr>
+        }
+        @else if (this.table == 'up') {
+            <tr>
+                <th>NAMUS #</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Date found</th>
+            </tr>
+            <tr *ngFor="let person of missing_persons">
+                <td>
+                    <a [routerLink]="['/search/up/results', person.namus_number]">
+                      {{ person.namus_number }}
+                    </a>
+                </td>
+                <td>{{ person.city }}</td>
+                <td>{{ person.state }}</td>
+                <td>{{ person.date_found }}</td>
+            </tr>
+        }
     </table>
 </div>

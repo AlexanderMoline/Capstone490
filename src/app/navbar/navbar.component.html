@@ -1,11 +1,16 @@
-<ul>
+<div class="navbar">
     <div class="logo">
-        <li class="logo"><a routerLink="/"><img ngSrc="/logo.png" width="221" height="63" /></a></li> <!-- Logo placeholder -->
+        <a routerLink="/"><img ngSrc="logo.png" width="221" height="63" /></a>
     </div>
-    <div class="pages">
-        <li><a routerLink="/about">ABOUT</a></li>
-        <li><a routerLink="/faq">FAQ</a></li>
-        <li><a routerLink="/search">SEARCH</a></li>
-        <li><a routerLink="/contact">CONTACT</a></li>
+    <a routerLink="about">ABOUT</a>
+    <a routerLink="faq">FAQ</a>
+    <div class="dropdown">
+        <button class="dropbtn">SEARCH</button>
+        <div class="dropdown-content">
+            <a routerLink="search/mp">MISSING</a>
+            <a routerLink="search/up">UNIDENTIFIED</a>
+            <a routerLink="search/persons">COMPARISON</a>
+        </div>
     </div>
-</ul>
+    <a routerLink="contact">CONTACT</a>
+</div> 

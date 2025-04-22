@@ -4,12 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BackendService } from '../backend.service';
 
 @Component({
-  selector: 'app-search',
+  selector: 'app-search-missing',
   imports: [ RouterLink, ReactiveFormsModule ],
-  templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  templateUrl: './search-missing.component.html',
 })
-export class SearchComponent {
+export class SearchMissingComponent {
   constructor(private backendService: BackendService) { }
 
   private searchParams: Map<string, string> = new Map();
@@ -46,7 +45,7 @@ export class SearchComponent {
     this.addControlToSearch('stateLast', 'state');
     this.addControlToSearch('cityLast', 'city');
     this.addControlToSearch('countyLast', 'county');
-    var url = this.backendService.constructSearchMissingUrl(this.searchParams);
+    var url = this.backendService.constructSearchUrl(this.searchParams, 'mp');
     console.log(url);
     this.backendService.getData(url);
   }
