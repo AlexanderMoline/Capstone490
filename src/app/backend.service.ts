@@ -18,17 +18,14 @@ export class BackendService {
   }
 
   getCaseDetails(caseNumber: string): Observable<any> {
-    const url = `${this.baseUrl}/mp/${caseNumber}`;
-    return this.http.get<any>(url);
-  }
+    var table = caseNumber.slice(0, 2).toLowerCase();
 
-  getUnidentifiedDetails(namusNumber: string): Observable<any> {
-    const url = `${this.baseUrl}/up/${namusNumber}`;
+    const url = `${this.baseUrl}/${table}/${caseNumber}`;
     return this.http.get<any>(url);
   }
   
-  constructSearchMissingUrl(parameters: Map<string, string>): string {
-    var url = this.baseUrl + '/mp/search?';
+  constructSearchUrl(parameters: Map<string, string>, table: string): string {
+    var url = this.baseUrl + `/${table}/search?`;
     for (var parameter of parameters) {
       if (parameter[1] != '') {
         var encodeSpaces = parameter[1].replaceAll(' ', '%20');

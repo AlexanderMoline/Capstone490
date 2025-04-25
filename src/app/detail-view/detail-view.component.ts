@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { BackendService } from '../backend.service';
 import { RouterLink } from '@angular/router';
@@ -7,12 +6,13 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-detail-view',
-  imports: [NgOptimizedImage, RouterLink],
+  imports: [RouterLink],
   templateUrl: './detail-view.component.html',
   styleUrl: './detail-view.component.css'
 })
 export class DetailViewComponent implements OnInit {
   caseDetails: any;  // Will store data from the API
+  table: string | null = null;
 
   constructor(
     private backendService: BackendService,
@@ -21,6 +21,8 @@ export class DetailViewComponent implements OnInit {
 
   ngOnInit(): void {
     const caseNumber = this.route.snapshot.paramMap.get('case_number');
+    this.table = this.route.snapshot.paramMap.get('table');
+
     if (caseNumber) {
       this.backendService.getCaseDetails(caseNumber).subscribe(
         data => this.caseDetails = data,
