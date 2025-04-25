@@ -18,6 +18,12 @@ h2 {
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'InknutAntiqua';
+    src: url('./assets/InknutAntiqua-Medium.ttf');
+  }
+
+
 .field-group {
     display: flex;
     flex-wrap: wrap;
@@ -39,3 +45,4 @@ form {
 select {
     width: 3cm;
 }
+
