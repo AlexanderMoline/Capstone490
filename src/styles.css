@@ -17,3 +17,7 @@ h2 {
     font-size: 24px;
     font-weight: bold;
 }
+@font-face {
+    font-family: 'InknutAntiqua';
+    src: url('./assets/InknutAntiqua-Medium.ttf');
+  }
