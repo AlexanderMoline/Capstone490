@@ -158,6 +158,8 @@ app.get("/mp/search", async (req, res) => {
 app.get("/up/search", async (req, res) => {
   try {
     const {
+      namus_number,
+      date_found,
       state,
       county,
       city,
@@ -184,6 +186,14 @@ app.get("/up/search", async (req, res) => {
         `;
     const params = [];
 
+    if (namus_number) {
+      query += ` AND up.namus_number = $${params.length + 1}`;
+      params.push(namus_number);
+    }
+    if (date_found) {
+      query += ` AND up.date_found = $${params.length + 1}`;
+      params.push(date_found);
+    }
     if (state) {
       query += ` AND up.state = $${params.length + 1}`;
       params.push(state);
