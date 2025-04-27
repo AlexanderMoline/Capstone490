@@ -1,236 +1,234 @@
 <h1 class="case-title">
-    Case {{ caseDetails?.case_number || 'Loading...' }}
-  </h1>
-  
-  <div class="main-container">
-  
-    <!-- Navigation -->
-    <nav class="navigation">
-        <a class="back-link" [routerLink]="[`/search/${table}/results`]">
-          &larr; Return to Search Results
-        </a>
-      </nav>
-      
-  
-    <!-- Portrait Section -->
-    <section class="portrait-section">
-      <img
-        class="portrait-img"
-        [src]="caseDetails?.portrait_url || 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'"
-        width="300"
-        height="300"
-        alt="Portrait"
-      />
-    </section>
-  
-    <!-- Demographics Section -->
-    <section class="info-section demographics">
-      <header class="section-header">
-        <h2>Demographics</h2>
-      </header>
-      <div class="details">
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Legal First Name</label><br>
-            <span>{{ caseDetails?.first_name || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Middle Name</label><br>
-            <span>{{ caseDetails?.middle_name || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Legal Last Name</label><br>
-            <span>{{ caseDetails?.last_name || 'N/A' }}</span>
-          </div>
+  Case
+  {{ caseDetails?.namus_number || caseDetails?.case_number || "Loading..." }}
+</h1>
+
+<div class="main-container">
+  <!-- Navigation -->
+  <nav class="navigation">
+    <a class="back-link" [routerLink]="[`/search/${table}/results`]">
+      &larr; Return to Search Results
+    </a>
+  </nav>
+
+  <!-- Portrait Section -->
+  <section class="portrait-section">
+    <img
+      class="portrait-img"
+      [src]="
+        caseDetails?.portrait_url ||
+        'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
+      "
+      width="300"
+      height="300"
+      alt="Portrait"
+    />
+  </section>
+
+  <!-- Demographics Section -->
+  <section class="info-section demographics">
+    <header class="section-header">
+      <h2>Demographics</h2>
+    </header>
+    <div class="details">
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Legal First Name</label><br />
+          <span>{{ caseDetails?.first_name || "N/A" }}</span>
         </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Missing Age</label><br>
-            <span>{{ caseDetails?.missing_age || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Current Age</label><br>
-            <span>{{ caseDetails?.current_age || 'N/A' }}</span>
-          </div>
+        <div class="attribute">
+          <label>Middle Name</label><br />
+          <span>{{ caseDetails?.middle_name || "N/A" }}</span>
         </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Chosen Name / Nickname / Alias</label><br>
-            <span>{{ caseDetails?.nickname || 'N/A' }}</span>
-          </div>
-        </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Sex</label><br>
-            <span>{{ caseDetails?.biological_sex || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Weight</label><br>
-            <span>{{ caseDetails?.weight || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Height</label><br>
-            <span>{{ caseDetails?.height || 'N/A' }}</span>
-          </div>
-        </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Race / Ethnicity</label><br>
-            <span>{{ caseDetails?.race_or_ethnicity || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Tribal Affiliation</label><br>
-            <span>{{ caseDetails?.tribal_affiliation || 'N/A' }}</span>
-          </div>
-        </div>
-  
-      </div>
-    </section>
-  
-    <!-- Circumstances Section -->
-    <section class="info-section circumstances">
-      <header class="section-header">
-        <h2>Circumstances</h2>
-      </header>
-      <div class="details">
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Date of Last Contact</label><br>
-            <span>{{ caseDetails?.last_seen_date || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Last Known Location</label><br>
-            <span>
-              {{ caseDetails?.city || 'City N/A' }},
-              {{ caseDetails?.county || 'County N/A' }},
-              {{ caseDetails?.state || 'State N/A' }}
-            </span>
-          </div>
-        </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Circumstances of Disappearance</label><br>
-            <span>{{ caseDetails?.circumstance_detail || 'N/A' }}</span>
-          </div>
-        </div>
-  
-      </div>
-    </section>
-  
-    <!-- Physical Description Section -->
-    <section class="info-section physical-description">
-      <header class="section-header">
-        <h2>Physical Description</h2>
-      </header>
-      <div class="details">
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Left Eye Color</label><br>
-            <span>{{ caseDetails?.left_eye_color || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Right Eye Color</label><br>
-            <span>{{ caseDetails?.right_eye_color || 'N/A' }}</span>
-          </div>
-        </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Hair Color</label><br>
-            <span>{{ caseDetails?.hair_color || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Hair Description</label><br>
-            <span>{{ caseDetails?.hair_description || 'N/A' }}</span>
-          </div>
-        </div>
-  
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Facial Hair Description</label><br>
-            <span>{{ caseDetails?.facial_hair_description || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Body Hair Description</label><br>
-            <span>{{ caseDetails?.body_hair_description || 'N/A' }}</span>
-          </div>
-        </div>
-  
-      </div>
-    </section>
-  
-    <!-- Vehicle Section (optional if data is null) -->
-    <section class="info-section vehicle">
-      <header class="section-header">
-        <h2>Vehicle Information</h2>
-      </header>
-      <div class="details">
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Make</label><br>
-            <span>{{ caseDetails?.vehicle_make || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Model</label><br>
-            <span>{{ caseDetails?.vehicle_model || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Year</label><br>
-            <span>{{ caseDetails?.vehicle_year || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>License Plate</label><br>
-            <span>{{ caseDetails?.vehicle_license_num || 'N/A' }}</span>
-          </div>
+        <div class="attribute">
+          <label>Legal Last Name</label><br />
+          <span>{{ caseDetails?.last_name || "N/A" }}</span>
         </div>
       </div>
-    </section>
-  
-    <!-- Articles Section -->
-    <section class="info-section articles">
-      <header class="section-header">
-        <h2>Articles</h2>
-      </header>
-      <div class="details">
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Type</label><br>
-            <span>{{ caseDetails?.articletype || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Description</label><br>
-            <span>{{ caseDetails?.articledescription || 'N/A' }}</span>
-          </div>
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Missing Age</label><br />
+          <span>{{ caseDetails?.missing_age || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Current Age</label><br />
+          <span>{{ caseDetails?.current_age || "N/A" }}</span>
         </div>
       </div>
-    </section>
-  
-    <!-- Case Management Section -->
-    <section class="info-section case-management">
-      <header class="section-header">
-        <h2>Case Management</h2>
-      </header>
-      <div class="details">
-        <div class="detail-row">
-          <div class="attribute">
-            <label>Status</label><br>
-            <span>{{ caseDetails?.case_status || 'N/A' }}</span>
-          </div>
-          <div class="attribute">
-            <label>Last Updated</label><br>
-            <span>{{ caseDetails?.update_date || 'N/A' }}</span>
-          </div>
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Chosen Name / Nickname / Alias</label><br />
+          <span>{{ caseDetails?.nickname || "N/A" }}</span>
         </div>
       </div>
-    </section>
-  
-  </div>
-  
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Sex</label><br />
+          <span>{{ caseDetails?.biological_sex || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Weight</label><br />
+          <span>{{ caseDetails?.weight || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Height</label><br />
+          <span>{{ caseDetails?.height || "N/A" }}</span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Race / Ethnicity</label><br />
+          <span>{{
+            caseDetails?.primary_ethnicity ||
+              caseDetails?.race_or_ethnicity ||
+              "N/A"
+          }}</span>
+        </div>
+        <div class="attribute">
+          <label>Tribal Affiliation</label><br />
+          <span>{{ caseDetails?.tribal_affiliation || "N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Circumstances Section -->
+  <section class="info-section circumstances">
+    <header class="section-header">
+      <h2>Circumstances</h2>
+    </header>
+    <div class="details">
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Date of Last Contact</label><br />
+          <span>{{ caseDetails?.last_seen_date || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Last Known Location</label><br />
+          <span>
+            {{ caseDetails?.city || "City N/A" }},
+            {{ caseDetails?.county || "County N/A" }},
+            {{ caseDetails?.state || "State N/A" }}
+          </span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Circumstances of Disappearance</label><br />
+          <span>{{ caseDetails?.circumstance_detail || "N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Physical Description Section -->
+  <section class="info-section physical-description">
+    <header class="section-header">
+      <h2>Physical Description</h2>
+    </header>
+    <div class="details">
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Left Eye Color</label><br />
+          <span>{{ caseDetails?.left_eye_color || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Right Eye Color</label><br />
+          <span>{{ caseDetails?.right_eye_color || "N/A" }}</span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Hair Color</label><br />
+          <span>{{ caseDetails?.hair_color || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Hair Description</label><br />
+          <span>{{ caseDetails?.hair_description || "N/A" }}</span>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Facial Hair Description</label><br />
+          <span>{{ caseDetails?.facial_hair_description || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Body Hair Description</label><br />
+          <span>{{ caseDetails?.body_hair_description || "N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vehicle Section (optional if data is null) -->
+  <section class="info-section vehicle">
+    <header class="section-header">
+      <h2>Vehicle Information</h2>
+    </header>
+    <div class="details">
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Make</label><br />
+          <span>{{ caseDetails?.vehicle_make || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Model</label><br />
+          <span>{{ caseDetails?.vehicle_model || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Year</label><br />
+          <span>{{ caseDetails?.vehicle_year || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>License Plate</label><br />
+          <span>{{ caseDetails?.vehicle_license_num || "N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section class="info-section articles">
+    <header class="section-header">
+      <h2>Articles</h2>
+    </header>
+    <div class="details">
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Type</label><br />
+          <span>{{ caseDetails?.articletype || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Description</label><br />
+          <span>{{ caseDetails?.articledescription || "N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Management Section -->
+  <section class="info-section case-management">
+    <header class="section-header">
+      <h2>Case Management</h2>
+    </header>
+    <div class="details">
+      <div class="detail-row">
+        <div class="attribute">
+          <label>Status</label><br />
+          <span>{{ caseDetails?.case_status || "N/A" }}</span>
+        </div>
+        <div class="attribute">
+          <label>Last Updated</label><br />
+          <span>{{ caseDetails?.update_date || "N/A" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

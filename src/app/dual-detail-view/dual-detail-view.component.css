@@ -1,0 +1,106 @@
+/* Overall page */
+.dual-detail-page {
+  display: flex;
+  flex-direction: column;
+  background: #3e3939;
+  color: #eee;
+  padding: 25px;
+  max-width: 10in;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+/* Back link */
+.navigation .back-link {
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+/* Two‐panel row */
+.dual-detail-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Panel container */
+.detail-panel {
+  flex: 1;
+  background: transparent; /* no white card */
+}
+
+/* Portrait */
+.portrait-section {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.portrait-section img {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #332f2d;
+}
+
+/* Section styling (reuses your detail-view patterns) */
+.info-section {
+  margin-top: 1.5rem;
+}
+.section-header h2 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.details {
+  width: 100%;
+}
+.detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.attribute {
+  flex: 1 1 30%;
+}
+.attribute label {
+  font-weight: normal;
+  color: #ccc;
+}
+.attribute span {
+  font-weight: bold;
+  color: #eee;
+}
+
+/* Gutter */
+.gutter {
+  width: 2rem;
+}
+
+/* Bottom Back button */
+.bottom-bar {
+  text-align: center;
+  margin-top: 2rem;
+}
+.btn-back {
+  background: #ddd;
+  color: #332f2d;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-back:hover {
+  background: #ccc;
+}
+
+.gutter {
+  width: 4px; /* thin line */
+  background-color: rgba(255, 255, 255, 0.2);
+  align-self: stretch; /* make it full-height of the flex container */
+  margin: 0 1rem; /* some horizontal breathing room */
+}
