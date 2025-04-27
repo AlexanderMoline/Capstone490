@@ -293,81 +293,130 @@ app.get("/up/search", async (req, res) => {
 });
 
 app.get("/persons/search", async (req, res) => {
+  const {
+    state,
+    county,
+    city,
+    biological_sex,
+    missing_age,
+    age_from,
+    age_to,
+    race_ethnicity,
+    sortBy,
+    sortOrder,
+  } = req.query;
+
+  const buildMissing = () => {
+    let text = `SELECT * FROM missing_persons WHERE 1=1`;
+    const params = [];
+
+    if (state) {
+      params.push(state);
+      text += ` AND state = $${params.length}`;
+    }
+    if (county) {
+      params.push(county);
+      text += ` AND county = $${params.length}`;
+    }
+    if (city) {
+      params.push(city);
+      text += ` AND city = $${params.length}`;
+    }
+    if (biological_sex) {
+      params.push(biological_sex);
+      text += ` AND biological_sex = $${params.length}`;
+    }
+    if (missing_age) {
+      params.push(missing_age);
+      text += ` AND missing_age = $${params.length}`;
+    }
+    if (age_from) {
+      params.push(age_from);
+      text += ` AND missing_age >= $${params.length}`;
+    }
+    if (age_to) {
+      params.push(age_to);
+      text += ` AND missing_age <= $${params.length}`;
+    }
+    if (race_ethnicity) {
+      params.push(race_ethnicity);
+      text += ` AND race_or_ethnicity = $${params.length}`;
+    }
+
+    if (sortBy) {
+      const dir = sortOrder === "desc" ? "DESC" : "ASC";
+      text += ` ORDER BY ${sortBy} ${dir}`;
+    }
+
+    return { text, params };
+  };
+  const buildUnidentified = () => {
+    let text = `SELECT * FROM unidentified_persons WHERE 1=1`;
+    const params = [];
+
+    // always exclude “Uncertain”
+    text += ` AND primary_ethnicity <> 'Uncertain'`;
+
+    if (state) {
+      params.push(state);
+      text += ` AND state = $${params.length}`;
+    }
+    if (county) {
+      params.push(county);
+      text += ` AND county = $${params.length}`;
+    }
+    if (city) {
+      params.push(city);
+      text += ` AND city = $${params.length}`;
+    }
+    if (biological_sex) {
+      params.push(biological_sex);
+      text += ` AND biological_sex = $${params.length}`;
+    }
+
+    // age‐range overlap
+    if (age_from) {
+      params.push(age_from);
+      text += ` AND estimated_age_to >= $${params.length}`;
+    }
+    if (age_to) {
+      params.push(age_to);
+      text += ` AND estimated_age_from <= $${params.length}`;
+    }
+
+    // include exact match OR “Multiple” when filtering
+    if (race_ethnicity) {
+      params.push(race_ethnicity); // e.g. 'White'
+      params.push("Multiple");
+      text += ` AND (
+        primary_ethnicity = $${params.length - 1}
+        OR primary_ethnicity = $${params.length}
+      )`;
+    }
+
+    if (sortBy) {
+      const dir = sortOrder === "desc" ? "DESC" : "ASC";
+      text += ` ORDER BY ${sortBy} ${dir}`;
+    }
+
+    return { text, params };
+  };
+
   try {
-    const {
-      state,
-      county,
-      city,
-      biological_sex,
-      missing_age,
-      race_ethnicity,
-      sortBy,
-      sortOrder,
-      age_from,
-      age_to,
-    } = req.query;
-
-    const buildQuery = (tableName) => {
-      let query = `SELECT * FROM ${tableName} WHERE 1=1`;
-      const params = [];
-
-      if (state) {
-        query += ` AND state = $${params.length + 1}`;
-        params.push(state);
-      }
-      if (county) {
-        query += ` AND county = $${params.length + 1}`;
-        params.push(county);
-      }
-      if (city) {
-        query += ` AND city = $${params.length + 1}`;
-        params.push(city);
-      }
-      if (biological_sex) {
-        query += ` AND biological_sex = $${params.length + 1}`;
-        params.push(biological_sex);
-      }
-      if (missing_age) {
-        query += ` AND missing_age = $${params.length + 1}`;
-        params.push(missing_age);
-      }
-      if (age_from) {
-        query += ` AND age_from >= $${params.length + 1}`;
-        params.push(age_from);
-      }
-      if (age_to) {
-        query += ` AND age_to <= $${params.length + 1}`;
-        params.push(age_to);
-      }
-      if (race_ethnicity) {
-        query += ` AND race_ethnicity = $${params.length + 1}`;
-        params.push(race_ethnicity);
-      }
-
-      if (sortBy) {
-        const order = sortOrder === "desc" ? "DESC" : "ASC";
-        query += ` ORDER BY ${sortBy} ${order}`;
-      }
-
-      return { query, params };
-    };
-
-    const missingQuery = buildQuery("missing_persons");
-    const unidentifiedQuery = buildQuery("unidentified_persons");
-
-    const [missingResult, unidentifiedResult] = await Promise.all([
-      db.query(missingQuery.query, missingQuery.params),
-      db.query(unidentifiedQuery.query, unidentifiedQuery.params),
+    const [miss, unid] = await Promise.all([
+      db.query(...Object.values(buildMissing())),
+      db.query(...Object.values(buildUnidentified())),
     ]);
 
     res.json({
-      missing_persons: missingResult.rows,
-      unidentified_persons: unidentifiedResult.rows,
+      missing_persons: miss.rows,
+      unidentified_persons: unid.rows,
     });
-  } catch (error) {
+  } catch (err) {
+    console.error(err);
     res
       .status(500)
-      .json({ error: "Internal Server Error", details: error.message });
+      .json({ error: "Internal Server Error", details: err.message });
   }
 });
 
@@ -443,7 +492,7 @@ app.get("/persons/:mp_case_number/:up_namus_number", async (req, res) => {
     );
 
     const unidentifiedResult = await db.query(
-      `SELECT up.*, ucp.*, ua.*, ui.* 
+      `SELECT ucp.*, ua.*, ui.*, up.* 
              FROM public.unidentified_persons up
              LEFT JOIN public.up_circumstances_physical ucp 
              ON up.namus_number = ucp.namus_number
