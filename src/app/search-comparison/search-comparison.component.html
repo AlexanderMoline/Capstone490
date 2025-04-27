@@ -1,3 +1,4 @@
+<!-- src/app/search-comparison/search-comparison.component.html -->
 <h1>Search by Missing and Unidentified Persons</h1>
 
 <form [formGroup]="search">
@@ -46,9 +47,10 @@
       </select>
     </div>
   </div>
+
   <div class="field-group" style="justify-content: space-around">
     <div>
-      <label for="hair-color">Hair color</label><br />
+      <label for="hair-color">Hair Color</label><br />
       <select id="hair-color" formControlName="hairColor">
         <option></option>
         <option value="Black">Black</option>
@@ -60,12 +62,12 @@
       </select>
     </div>
     <div>
-      <label for="eye-color">Eye color</label><br />
+      <label for="eye-color">Eye Color</label><br />
       <select id="eye-color" formControlName="eyeColor">
         <option></option>
         <option value="Brown">Brown</option>
-        <option value="Brown">Green</option>
-        <option value="Brown">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Blue">Blue</option>
         <option value="Hazel">Hazel</option>
         <option value="Unknown">Unknown</option>
       </select>
@@ -75,7 +77,7 @@
   <h2>Timing</h2>
   <div class="field-group">
     <div>
-      <label for="missing-from">Year range (missing)</label><br />
+      <label for="missing-from">Year Range (Missing)</label><br />
       <input
         id="missing-from"
         type="text"
@@ -91,7 +93,7 @@
       /><br />
     </div>
     <div>
-      <label for="body-found-from">Year range (body found)</label><br />
+      <label for="body-found-from">Year Range (Body Found)</label><br />
       <input
         id="body-found-from"
         type="text"
@@ -106,17 +108,13 @@
         formControlName="bodyFoundTo"
       /><br />
     </div>
-    <div>
-      <label for="age-from">Age range</label><br />
-      <input id="age-from" type="text" size="3" formControlName="ageFrom" /> to
-      <input id="age-to" type="text" size="3" formControlName="ageTo" /><br />
-    </div>
   </div>
+
   <div class="submit-button">
     <button
+      type="button"
       (click)="onSubmit()"
-      routerLink="/search/persons/results"
-      type="submit"
+      [routerLink]="['/search/persons/results']"
     >
       Search
     </button>

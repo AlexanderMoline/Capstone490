@@ -1,0 +1,101 @@
+/* Entire page background & text */
+:host {
+  display: block;
+  background: #332f2d; /* dark CAMUP background */
+  color: #eee; /* light text everywhere */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Page title */
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+/* Panels container (ensure this is flex: row) */
+.dual-list-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Wrapper around each table for centering & scroll */
+.panel table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+/* Table header */
+thead {
+  background: #332f2d; /* same as page header */
+}
+thead th {
+  color: #fff;
+  font-weight: normal;
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 2px solid #555;
+}
+
+/* Table body rows */
+tbody tr {
+  background: #444; /* base grey row */
+}
+tbody tr:nth-child(even) {
+  background: #3a3a3a; /* slightly darker alternate */
+}
+tbody tr:hover {
+  background: #555; /* hover highlight */
+}
+
+/* Highlight selected row with burgundy */
+tbody tr.selected {
+  background-color: #5a130a !important;
+  color: #fff;
+}
+
+/* Cells */
+td {
+  padding: 0.75rem;
+  color: #eee;
+  border-bottom: 1px solid #666;
+}
+
+/* Links in cells (e.g. NAMUS # or Case #) */
+td a {
+  color: #ddd;
+  text-decoration: none;
+}
+td a:hover {
+  text-decoration: underline;
+}
+
+/* Gutter (if you kept it) */
+.gutter {
+  width: 2rem;
+  background: #b3b3b3;
+  border-radius: 4px;
+}
+
+/* Bottom GO button */
+.bottom-bar {
+  text-align: center;
+  margin-top: 1rem;
+}
+.btn-go {
+  background: #ddd;
+  color: #332f2d;
+  border: none;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn-go:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

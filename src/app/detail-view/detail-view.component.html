@@ -82,7 +82,11 @@
       <div class="detail-row">
         <div class="attribute">
           <label>Race / Ethnicity</label><br />
-          <span>{{ caseDetails?.race_or_ethnicity || "N/A" }}</span>
+          <span>{{
+            caseDetails?.primary_ethnicity ||
+              caseDetails?.race_or_ethnicity ||
+              "N/A"
+          }}</span>
         </div>
         <div class="attribute">
           <label>Tribal Affiliation</label><br />

@@ -1,3 +1,4 @@
+// src/app/search-comparison/search-comparison.component.ts
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -9,16 +10,16 @@ import { BackendService } from '../backend.service';
   templateUrl: './search-comparison.component.html',
 })
 export class SearchComparisonComponent {
-  // our backing Map<queryParam, value>
   private searchParams = new Map<string, string>();
 
-  // formGroup matching the inputs in your HTML
   search = new FormGroup({
     state: new FormControl(''),
     county: new FormControl(''),
     city: new FormControl(''),
     sex: new FormControl(''),
     race: new FormControl(''),
+    hairColor: new FormControl(''), // added
+    eyeColor: new FormControl(''), // added
     missingFrom: new FormControl(''),
     missingTo: new FormControl(''),
     bodyFoundFrom: new FormControl(''),
@@ -30,36 +31,36 @@ export class SearchComparisonComponent {
   onSubmit() {
     this.searchParams.clear();
 
-    // map form fields → your server’s query‐string names
     this.addControlToSearch('state', 'state');
     this.addControlToSearch('county', 'county');
     this.addControlToSearch('city', 'city');
     this.addControlToSearch('sex', 'biological_sex');
     this.addControlToSearch('race', 'race_ethnicity');
+    this.addControlToSearch('hairColor', 'hair_color');
+    this.addControlToSearch('eyeColor', 'eye_color');
 
-    // for missing-AGE range, your server uses age_from / age_to
+    // missing-age range
     this.addControlToSearch('missingFrom', 'age_from');
     this.addControlToSearch('missingTo', 'age_to');
 
-    // if you want to filter by body‐found-year range,
-    // map those to missing_age (or adapt your server accordingly)
+    // optional body-found-year mapping
     // this.addControlToSearch('bodyFoundFrom','missing_age');
     // this.addControlToSearch('bodyFoundTo',  'missing_age');
 
-    const url = this.backendService.constructSearchUrl(
-      this.searchParams,
-      'persons',
-    );
-    console.log('🔍 comparison URL =', url);
+    // save for the dual-list component
+    this.backendService.saveComparisonParams(this.searchParams);
 
-    // reuse your existing getData (it sets the service’s result Observable)
-    this.backendService.getData(url);
+    // for debugging
+    console.log(
+      '🔍 comparison URL =',
+      this.backendService.constructSearchUrl(this.searchParams, 'persons'),
+    );
   }
 
-  private addControlToSearch(ctrl: string, param: string) {
-    const val = this.search.get(ctrl)?.value;
+  private addControlToSearch(controlName: string, paramName: string) {
+    const val = this.search.get(controlName)?.value;
     if (val !== null && val !== '') {
-      this.searchParams.set(param, val);
+      this.searchParams.set(paramName, val);
     }
   }
 }

@@ -1,0 +1,94 @@
+<!-- list-dual-view.component.html -->
+<div class="dual-list-page">
+  <!-- Top bar: Adjust filters + instructions -->
+  <div class="top-bar">
+    <button class="btn-adjust" [routerLink]="['/search/persons']">
+      ADJUST FILTERS
+    </button>
+    <span class="instruction">
+      Select one case in each panel, then hit GO for detailed view of both
+      cases.
+    </span>
+  </div>
+
+  <!-- Two-panel container -->
+  <div class="dual-list-content">
+    <!-- Left panel: Missing Persons -->
+    <section class="panel panel-missing">
+      <button class="btn-deselect" (click)="deselectMissing()">DESELECT</button>
+      <h2>Missing Persons</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>First</th>
+            <th>Last</th>
+            <th>Date Missing</th>
+            <th>State</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let p of missingPersons"
+            [class.selected]="selectedMissing === p.case_number"
+            (click)="selectMissing(p.case_number)"
+          >
+            <td>{{ p.case_number }}</td>
+            <td>{{ p.first_name }}</td>
+            <td>{{ p.last_name }}</td>
+            <td>{{ p.date_found }}</td>
+            <td>{{ p.state }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Gutter between panels -->
+    <div class="gutter"></div>
+
+    <!-- Right panel: Unidentified Persons -->
+    <section class="panel panel-unidentified">
+      <button class="btn-deselect" (click)="deselectUnidentified()">
+        DESELECT
+      </button>
+      <h2>Unidentified Persons</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Date Found</th>
+            <th>Age Range</th>
+            <th>State Found</th>
+            <th>City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let p of unidentifiedPersons"
+            [class.selected]="selectedUnidentified === p.namus_number"
+            (click)="selectUnidentified(p.namus_number)"
+          >
+            <td>{{ p.namus_number }}</td>
+            <td>{{ p.date_found }}</td>
+            <td>{{ p.estimated_age_from }}–{{ p.estimated_age_to }}</td>
+            <td>{{ p.state }}</td>
+            <td>{{ p.city }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <!-- /.dual-list-content -->
+
+  <!-- Bottom GO button -->
+  <div class="bottom-bar">
+    <button
+      class="btn-go"
+      [disabled]="!selectedMissing || !selectedUnidentified"
+      [routerLink]="['/search/persons', selectedMissing, selectedUnidentified]"
+    >
+      GO
+    </button>
+  </div>
+</div>
+<!-- /.dual-list-page -->
