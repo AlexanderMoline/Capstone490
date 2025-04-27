@@ -7,6 +7,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ListViewComponent } from './list-view/list-view.component';
 import { ListDualViewComponent } from './list-dual-view/list-dual-view.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
+import { DualDetailViewComponent } from './dual-detail-view/dual-detail-view.component';
 import { SearchUnidentifiedComponent } from './search-unidentified/search-unidentified.component';
 import { SearchComparisonComponent } from './search-comparison/search-comparison.component';
 
@@ -50,6 +51,11 @@ export const routes: Routes = [
     path: 'search/:table/results',
     component: ListViewComponent,
     title: 'CAMUP - Search',
+  },
+  {
+    path: 'search/persons/:mp_case_number/:up_namus_number',
+    component: DualDetailViewComponent,
+    title: 'CAMUP – Case Details',
   },
   {
     path: 'search/:table/results/:case_number',

@@ -17,6 +17,12 @@ export class BackendService {
     this.searchMissingResult = this.http.get<any[]>(url);
   }
 
+  getPairDetails(mp: string, up: string) {
+    return this.http.get<{ missing_person: any; unidentified_person: any }>(
+      `${this.baseUrl}/persons/${mp}/${up}`,
+    );
+  }
+
   /** Holds the last comparison search parameters */
   comparisonParams = new Map<string, string>();
 

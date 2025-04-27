@@ -1,0 +1,201 @@
+<!-- dual-detail-view.component.html -->
+<div class="dual-detail-page">
+  <!-- Back link -->
+  <nav class="navigation">
+    <a class="back-link" [routerLink]="['/search/persons/results']">
+      &larr; Return to Database Comparison
+    </a>
+  </nav>
+
+  <!-- Two columns: missing on left, unidentified on right -->
+  <div class="dual-detail-content">
+    <!-- Missing Person Panel -->
+    <div class="detail-panel">
+      <h1 class="case-title">Case {{ missing?.case_number }}</h1>
+
+      <!-- Portrait -->
+      <section class="portrait-section">
+        <img
+          [src]="
+            missing?.portrait_url ||
+            'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
+          "
+          alt="Missing portrait"
+        />
+      </section>
+
+      <!-- Demographics -->
+      <section class="info-section demographics">
+        <header class="section-header"><h2>Demographics</h2></header>
+        <div class="details">
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Legal First Name</label><br />
+              <span>{{ missing?.first_name || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Middle Name</label><br />
+              <span>{{ missing?.middle_name || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Legal Last Name</label><br />
+              <span>{{ missing?.last_name || "N/A" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Missing Age</label><br />
+              <span>{{ missing?.missing_age || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Current Age</label><br />
+              <span>{{ missing?.current_age || "N/A" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Sex</label><br />
+              <span>{{ missing?.biological_sex || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Race / Ethnicity</label><br />
+              <span>{{ missing?.race_or_ethnicity || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Location Found</label><br />
+              <span>
+                {{ missing?.city || "N/A" }}, {{ missing?.county || "N/A" }},
+                {{ missing?.state || "N/A" }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Physical Description -->
+      <section class="info-section physical-description">
+        <header class="section-header"><h2>Physical Description</h2></header>
+        <div class="details">
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Eyes</label><br />
+              <span
+                >{{ missing?.left_eye_color || "–" }} /
+                {{ missing?.right_eye_color || "–" }}</span
+              >
+            </div>
+            <div class="attribute">
+              <label>Hair Color</label><br />
+              <span>{{ missing?.hair_color || "N/A" }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Circumstances -->
+      <section class="info-section circumstances">
+        <header class="section-header"><h2>Circumstances</h2></header>
+        <div class="details">
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Circumstances Detail</label><br />
+              <span>{{ missing?.circumstance_detail || "N/A" }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Gutter -->
+    <div class="gutter"></div>
+
+    <!-- Unidentified Person Panel -->
+    <div class="detail-panel">
+      <h1 class="case-title">NAMUS {{ unidentified?.namus_number }}</h1>
+
+      <section class="portrait-section">
+        <img
+          [src]="
+            unidentified?.portrait_url ||
+            'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
+          "
+          alt="Unidentified portrait"
+        />
+      </section>
+
+      <section class="info-section demographics">
+        <header class="section-header"><h2>Demographics</h2></header>
+        <div class="details">
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Full Name</label><br />
+              <span>
+                {{ unidentified?.first_name || "N/A" }}
+                {{ unidentified?.last_name || "" }}
+              </span>
+            </div>
+            <div class="attribute">
+              <label>Age Missing</label><br />
+              <span>{{ unidentified?.missing_age || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Current Age</label><br />
+              <span>{{ unidentified?.current_age || "N/A" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Race / Ethnicity</label><br />
+              <span>{{ unidentified?.primary_ethnicity || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Sex</label><br />
+              <span>{{ unidentified?.biological_sex || "N/A" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Location Found</label><br />
+              <span>
+                {{ unidentified?.city || "N/A" }},
+                {{ unidentified?.county || "N/A" }},
+                {{ unidentified?.state || "N/A" }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section physical-description">
+        <header class="section-header"><h2>Physical Description</h2></header>
+        <div class="details">
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Eyes</label><br />
+              <span
+                >{{ unidentified?.left_eye_color || "–" }} /
+                {{ unidentified?.right_eye_color || "–" }}</span
+              >
+            </div>
+            <div class="attribute">
+              <label>Hair Color</label><br />
+              <span>{{ unidentified?.hair_color || "N/A" }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="info-section circumstances">
+        <header class="section-header"><h2>Circumstances</h2></header>
+        <div class="details">
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Recovery Info</label><br />
+              <span>{{
+                unidentified?.circumstances_of_recovery || "N/A"
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
