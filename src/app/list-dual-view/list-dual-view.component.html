@@ -20,27 +20,45 @@
       <table>
         <thead>
           <tr>
-            <th>Number</th>
+            <th>Case</th>
             <th>First</th>
             <th>Last</th>
+            <th>Missing Age</th>
             <th>Date Missing</th>
+            <th>City</th>
             <th>State</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            *ngFor="let p of missingPersons"
+            *ngFor="let p of pagedMissing"
             [class.selected]="selectedMissing === p.case_number"
             (click)="selectMissing(p.case_number)"
           >
             <td>{{ p.case_number }}</td>
             <td>{{ p.first_name }}</td>
             <td>{{ p.last_name }}</td>
-            <td>{{ p.date_found }}</td>
+            <td>{{ p.missing_age }}</td>
+            <td>{{ p.last_seen_date | date: "yyyy-MM-dd" }}</td>
+            <td>{{ p.city }}</td>
             <td>{{ p.state }}</td>
           </tr>
         </tbody>
       </table>
+
+      <!-- Missing Persons Pagination -->
+      <div class="pagination">
+        <button (click)="prevMissing()" [disabled]="missingPage === 1">
+          Prev
+        </button>
+        <span>Page {{ missingPage }} / {{ missingTotalPages }}</span>
+        <button
+          (click)="nextMissing()"
+          [disabled]="missingPage === missingTotalPages"
+        >
+          Next
+        </button>
+      </div>
     </section>
 
     <!-- Gutter between panels -->
@@ -58,24 +76,47 @@
             <th>Number</th>
             <th>Date Found</th>
             <th>Age Range</th>
-            <th>State Found</th>
             <th>City</th>
+            <th>State Found</th>
+            <th>Biological Sex</th>
+            <th>Race/Ethnicity</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            *ngFor="let p of unidentifiedPersons"
+            *ngFor="let p of pagedUnidentified"
             [class.selected]="selectedUnidentified === p.namus_number"
             (click)="selectUnidentified(p.namus_number)"
           >
             <td>{{ p.namus_number }}</td>
-            <td>{{ p.date_found }}</td>
+            <td>{{ p.date_found | date: "yyyy-MM-dd" }}</td>
             <td>{{ p.estimated_age_from }}–{{ p.estimated_age_to }}</td>
-            <td>{{ p.state }}</td>
             <td>{{ p.city }}</td>
+            <td>{{ p.state }}</td>
+            <td>{{ p.biological_sex }}</td>
+            <td>{{ p.primary_ethnicity }}</td>
           </tr>
         </tbody>
       </table>
+
+      <!-- Unidentified Persons Pagination -->
+      <div class="pagination">
+        <button
+          (click)="prevUnidentified()"
+          [disabled]="unidentifiedPage === 1"
+        >
+          Prev
+        </button>
+        <span>
+          Page {{ unidentifiedPage }} / {{ unidentifiedTotalPages }}
+        </span>
+        <button
+          (click)="nextUnidentified()"
+          [disabled]="unidentifiedPage === unidentifiedTotalPages"
+        >
+          Next
+        </button>
+      </div>
     </section>
   </div>
   <!-- /.dual-list-content -->
