@@ -23,7 +23,7 @@ h2 {
     src: url('./assets/InknutAntiqua-Medium.ttf');
   }
 
-
+/* Style for search forms */
 .field-group {
     display: flex;
     flex-wrap: wrap;
@@ -42,7 +42,7 @@ form {
     width: fit-content;
     margin: auto;
 }
-select {
+select, input {
     width: 3cm;
 }
 

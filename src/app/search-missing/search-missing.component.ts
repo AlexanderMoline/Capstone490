@@ -24,6 +24,11 @@ export class SearchMissingComponent {
     sex: new FormControl(''),
     race: new FormControl(''),
     tribalAffiliation: new FormControl(''),
+    heightFrom: new FormControl(''),
+    heightTo: new FormControl(''),
+    weight: new FormControl(''),
+    hairColor: new FormControl(''),
+    eyeColor: new FormControl(''),
     dateLastContact: new FormControl(''),
     stateLast: new FormControl(''),
     cityLast: new FormControl(''),
@@ -42,6 +47,11 @@ export class SearchMissingComponent {
     this.addControlToSearch('tribalAffiliation', 'tribal_affiliation');
     this.addControlToSearch('ageMissing', 'missing_age');
     this.addControlToSearch('ageCurrent', 'current_age');
+    this.addControlToSearch('heightFrom', 'height_min');
+    this.addControlToSearch('heightTo', 'height_max');
+    this.addControlToSearch('weight', 'weight');
+    this.addControlToSearch('hairColor', 'hair_color');
+    this.addControlToSearch('eyeColor', 'eye_color');
     this.addControlToSearch('stateLast', 'state');
     this.addControlToSearch('cityLast', 'city');
     this.addControlToSearch('countyLast', 'county');
