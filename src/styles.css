@@ -1,48 +1,48 @@
-html, body {
-    height: 100%;
-    margin: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 body {
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background: #282323;
-    color: white;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #282323;
+  color: white;
 }
 .content {
-    margin: 30px;
+  margin: 30px;
 }
 h1 {
-    text-align: center;
+  text-align: center;
 }
 h2 {
-    font-size: 24px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 @font-face {
-    font-family: 'InknutAntiqua';
-    src: url('./assets/InknutAntiqua-Medium.ttf');
-  }
-
+  font-family: "InknutAntiqua";
+  src: url("./assets/InknutAntiqua-Medium.ttf");
+}
 
 .field-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 7in;
-    padding: 20px;
-    background: #3e3939
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 7in;
+  padding: 20px;
+  background: #3e3939;
 }
 .submit-button {
-    display: flex;
-    justify-content: center;
-    max-width: 7in;
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  max-width: 7in;
+  padding: 20px;
 }
 form {
-    width: fit-content;
-    margin: auto;
+  width: fit-content;
+  margin: auto;
 }
 select {
-    width: 3cm;
+  width: 3cm;
 }
-

@@ -424,7 +424,7 @@ app.get("/mp/:case_number", async (req, res) => {
   const { case_number } = req.params;
   try {
     const result = await db.query(
-      `SELECT mp.*, mcp.*, ma.*, mi.* 
+      `SELECT mcp.*, ma.*, mi.*, mp.* 
              FROM public.missing_persons mp
              LEFT JOIN public.mp_circumstances_physical mcp 
              ON mp.case_number = mcp.case_number
@@ -479,7 +479,7 @@ app.get("/persons/:mp_case_number/:up_namus_number", async (req, res) => {
 
   try {
     const missingResult = await db.query(
-      `SELECT mp.*, mcp.*, ma.*, mi.* 
+      `SELECT mcp.*, ma.*, mi.*, mp.* 
              FROM public.missing_persons mp
              LEFT JOIN public.mp_circumstances_physical mcp 
              ON mp.case_number = mcp.case_number

@@ -104,3 +104,19 @@
   align-self: stretch; /* make it full-height of the flex container */
   margin: 0 1rem; /* some horizontal breathing room */
 }
+.case-type {
+  /* Simple text underline: */
+  text-decoration: underline;
+
+  /* If you prefer a custom thickness or color, use a bottom border instead:
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.25rem;
+  */
+}
+.panel-label {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
