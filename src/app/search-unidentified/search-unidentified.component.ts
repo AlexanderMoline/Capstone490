@@ -21,6 +21,9 @@ export class SearchUnidentifiedComponent {
     ageTo: new FormControl(''),
     sex: new FormControl(''),
     race: new FormControl(''),
+    hairColor: new FormControl(''),
+    eyeColor: new FormControl(''),
+    height: new FormControl(''),
     date: new FormControl(''),
     state: new FormControl(''),
     city: new FormControl(''),
@@ -36,6 +39,9 @@ export class SearchUnidentifiedComponent {
     this.addControlToSearch('race', 'primary_ethnicity');
     this.addControlToSearch('ageFrom', 'age_from');
     this.addControlToSearch('ageTo', 'age_to');
+    this.addControlToSearch('hairColor', 'hair_color');
+    this.addControlToSearch('eyeColor', 'eye_color');
+    this.addControlToSearch('height', 'height_min');
     this.addControlToSearch('state', 'state');
     this.addControlToSearch('city', 'city');
     this.addControlToSearch('county', 'county');
