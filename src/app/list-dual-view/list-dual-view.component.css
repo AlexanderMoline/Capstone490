@@ -75,7 +75,7 @@ td a:hover {
 
 /* Gutter (if you kept it) */
 .gutter {
-  width: 2rem;
+  width: 1rem;
   background: #b3b3b3;
   border-radius: 4px;
 }
@@ -98,4 +98,26 @@ td a:hover {
 .btn-go:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.pagination button {
+  background: #ddd;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pagination span {
+  color: #eee;
+  font-size: 0.9rem;
 }
