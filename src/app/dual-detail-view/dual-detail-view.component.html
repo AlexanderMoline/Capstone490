@@ -31,43 +31,53 @@
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Legal First Name</label><br />
-              <span>{{ missing?.first_name || "N/A" }}</span>
+              <label>First Name</label><br />
+              <span>{{ missing?.first_name || "--" }}</span>
             </div>
             <div class="attribute">
               <label>Middle Name</label><br />
-              <span>{{ missing?.middle_name || "N/A" }}</span>
+              <span>{{ missing?.middle_name || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Legal Last Name</label><br />
-              <span>{{ missing?.last_name || "N/A" }}</span>
+              <label>Last Name</label><br />
+              <span>{{ missing?.last_name || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Biological Sex</label><br />
+              <span>{{ missing?.biological_sex || "--" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Race / Ethnicity</label><br />
+              <span>{{ missing?.race_or_ethnicity || "--" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Location Found</label><br />
+              <span>
+                {{ missing?.city || "--" }}, {{ missing?.county || "--" }},
+                {{ missing?.state || "--" }}
+              </span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
               <label>Missing Age</label><br />
-              <span>{{ missing?.missing_age || "N/A" }}</span>
+              <span>{{ missing?.missing_age || "--" }}</span>
             </div>
             <div class="attribute">
               <label>Current Age</label><br />
-              <span>{{ missing?.current_age || "N/A" }}</span>
+              <span>{{ missing?.current_age || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Sex</label><br />
-              <span>{{ missing?.biological_sex || "N/A" }}</span>
+              <label>Height</label><br />
+              <span>{{ missing?.height || "--" }} inches</span>
             </div>
             <div class="attribute">
-              <label>Race / Ethnicity</label><br />
-              <span>{{ missing?.race_or_ethnicity || "N/A" }}</span>
-            </div>
-            <div class="attribute">
-              <label>Location Found</label><br />
-              <span>
-                {{ missing?.city || "N/A" }}, {{ missing?.county || "N/A" }},
-                {{ missing?.state || "N/A" }}
-              </span>
+              <label>Weight</label><br />
+              <span>{{ missing?.weight || "--" }} lbs</span>
             </div>
           </div>
         </div>
@@ -79,15 +89,33 @@
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Eyes</label><br />
+              <label>Eyes: Left / Right</label><br />
               <span
-                >{{ missing?.left_eye_color || "–" }} /
-                {{ missing?.right_eye_color || "–" }}</span
+                >{{ missing?.left_eye_color || "--" }} /
+                {{ missing?.right_eye_color || "--" }}</span
               >
             </div>
             <div class="attribute">
               <label>Hair Color</label><br />
-              <span>{{ missing?.hair_color || "N/A" }}</span>
+              <span>{{ missing?.hair_color || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Head Hair Description</label><br />
+              <span>{{ missing?.hair_description || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Facial Hair Description</label><br />
+              <span>{{ missing?.facial_hair_description || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Body Hair Description</label><br />
+              <span>{{ missing?.body_hair_description || "--" }}</span>
             </div>
           </div>
         </div>
@@ -99,8 +127,26 @@
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
+              <label>Last Seen Date</label><br />
+              <span>
+                {{
+                  missing?.last_seen_date
+                    ? (missing.last_seen_date | date: "longDate")
+                    : "--"
+                }}
+              </span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
               <label>Circumstances Detail</label><br />
-              <span>{{ missing?.circumstance_detail || "N/A" }}</span>
+              <span>{{ missing?.description || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Articles Info</label><br />
+              <span>{{ missing?.articledescription || "--" }}</span>
             </div>
           </div>
         </div>
@@ -130,37 +176,40 @@
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Full Name</label><br />
-              <span>
-                {{ unidentified?.first_name || "N/A" }}
-                {{ unidentified?.last_name || "" }}
-              </span>
+              <label>Biological Sex</label><br />
+              <span>{{ unidentified?.biological_sex || "--" }}</span>
             </div>
-            <div class="attribute">
-              <label>Age Missing</label><br />
-              <span>{{ unidentified?.missing_age || "N/A" }}</span>
-            </div>
-            <div class="attribute">
-              <label>Current Age</label><br />
-              <span>{{ unidentified?.current_age || "N/A" }}</span>
-            </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
               <label>Race / Ethnicity</label><br />
-              <span>{{ unidentified?.primary_ethnicity || "N/A" }}</span>
-            </div>
-            <div class="attribute">
-              <label>Sex</label><br />
-              <span>{{ unidentified?.biological_sex || "N/A" }}</span>
+              <span>{{ unidentified?.primary_ethnicity || "--" }}</span>
             </div>
             <div class="attribute">
               <label>Location Found</label><br />
               <span>
-                {{ unidentified?.city || "N/A" }},
-                {{ unidentified?.county || "N/A" }},
-                {{ unidentified?.state || "N/A" }}
+                {{ unidentified?.city || "--" }},
+                {{ unidentified?.county || "--" }},
+                {{ unidentified?.state || "--" }}
               </span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Estimated Age From</label><br />
+              <span>{{ unidentified?.estimated_age_from || "--" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Estimated Age To</label><br />
+              <span>{{ unidentified?.estimated_age_to || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Height</label><br />
+              <span>{{ unidentified?.height_from || "--" }} inches</span>
+            </div>
+            <div class="attribute">
+              <label>Weight</label><br />
+              <span>{{ unidentified?.current_age || "--" }} lbs</span>
             </div>
           </div>
         </div>
@@ -171,15 +220,33 @@
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Eyes</label><br />
+              <label>Eyes: Left / Right</label><br />
               <span
-                >{{ unidentified?.left_eye_color || "–" }} /
-                {{ unidentified?.right_eye_color || "–" }}</span
+                >{{ unidentified?.left_eye_color || "--" }} /
+                {{ unidentified?.right_eye_color || "--" }}</span
               >
             </div>
             <div class="attribute">
               <label>Hair Color</label><br />
-              <span>{{ unidentified?.hair_color || "N/A" }}</span>
+              <span>{{ unidentified?.hair_color || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Head Hair Description</label><br />
+              <span>{{ unidentified?.head_hair_description || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Facial Hair Description</label><br />
+              <span>{{ unidentified?.facial_hair_description || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Body Hair Description</label><br />
+              <span>{{ unidentified?.body_hair_description || "--" }}</span>
             </div>
           </div>
         </div>
@@ -190,10 +257,26 @@
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
+              <label>Date Recovered</label><br />
+              <span>
+                {{
+                  unidentified?.date_found
+                    ? (unidentified.date_found | date: "longDate")
+                    : "--"
+                }}
+              </span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
               <label>Recovery Info</label><br />
-              <span>{{
-                unidentified?.circumstances_of_recovery || "N/A"
-              }}</span>
+              <span>{{ unidentified?.circumstances_of_recovery || "--" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute">
+              <label>Articles Info</label><br />
+              <span>{{ unidentified?.articledescription || "--" }}</span>
             </div>
           </div>
         </div>

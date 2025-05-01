@@ -41,6 +41,7 @@ app.get("/mp/search", async (req, res) => {
       city,
       biological_sex,
       missing_age,
+      last_seen_date,
       current_age,
       race_ethnicity,
       tribal_affiliation,
@@ -168,8 +169,7 @@ app.get("/up/search", async (req, res) => {
       age_from,
       age_to,
       primary_ethnicity,
-      height_min,
-      height_max,
+      height_from,
       weight,
       eye_color,
       hair_color,
@@ -210,9 +210,18 @@ app.get("/up/search", async (req, res) => {
       query += ` AND up.biological_sex = $${params.length + 1}`;
       params.push(biological_sex);
     }
-    if (missing_age) {
-      query += ` AND up.missing_age = $${params.length + 1}`;
-      params.push(missing_age);
+    if (age_from && age_to) {
+      params.push(age_from, age_to); // $n , $n+1
+      query += ` AND up.estimated_age_from BETWEEN $${params.length - 1} AND $${params.length}`;
+    } else {
+      if (age_from) {
+        query += ` AND up.estimated_age_from >= $${params.length + 1}`;
+        params.push(age_from);
+      }
+      if (age_to) {
+        query += ` AND up.estimated_age_to   <= $${params.length + 1}`;
+        params.push(age_to);
+      }
     }
 
     if (age_from && age_to) {
@@ -225,12 +234,19 @@ app.get("/up/search", async (req, res) => {
       query += ` AND up.missing_age <= $${params.length + 1}`;
       params.push(age_to);
     }
+    if (height_from) {
+      query += `
+    AND ucp.height_from IS NOT NULL        -- exclude rows with NULL height
+    AND ucp.height_from = $${params.length + 1}
+  `;
+      params.push(Number(height_from)); // bind as a number
+    }
 
     if (primary_ethnicity) {
       query += ` AND up.primary_ethnicity = $${params.length + 1}`;
       params.push(primary_ethnicity);
     }
-
+    /*
     if (height_min && height_max) {
       query += ` AND (
                 ucp.height_from BETWEEN $${params.length + 1} AND $${params.length + 2} 
@@ -258,6 +274,11 @@ app.get("/up/search", async (req, res) => {
                 )
             )`;
       params.push(height_max);
+    }
+*/
+    if (height_from) {
+      query += ` AND ucp.height_from = $${params.length + 1}`; // 👈 correct table alias
+      params.push(Number(height_from)); // ensure numeric binding
     }
 
     if (weight) {
@@ -301,102 +322,154 @@ app.get("/persons/search", async (req, res) => {
     missing_age,
     age_from,
     age_to,
+    hair_color,
+    eye_color,
     race_ethnicity,
     sortBy,
     sortOrder,
   } = req.query;
 
   const buildMissing = () => {
-    let text = `SELECT * FROM missing_persons WHERE 1=1`;
+    let text = `
+      SELECT mp.*, mcp.*
+      FROM missing_persons mp
+      LEFT JOIN mp_circumstances_physical mcp
+        ON mp.case_number = mcp.case_number
+      WHERE 1=1
+    `;
     const params = [];
 
     if (state) {
       params.push(state);
-      text += ` AND state = $${params.length}`;
+      text += ` AND mp.state = $${params.length}`;
     }
     if (county) {
       params.push(county);
-      text += ` AND county = $${params.length}`;
+      text += ` AND mp.county = $${params.length}`;
     }
     if (city) {
       params.push(city);
-      text += ` AND city = $${params.length}`;
+      text += ` AND mp.city = $${params.length}`;
     }
     if (biological_sex) {
       params.push(biological_sex);
-      text += ` AND biological_sex = $${params.length}`;
+      text += ` AND mp.biological_sex = $${params.length}`;
     }
     if (missing_age) {
       params.push(missing_age);
-      text += ` AND missing_age = $${params.length}`;
+      text += ` AND mp.missing_age = $${params.length}`;
     }
     if (age_from) {
       params.push(age_from);
-      text += ` AND missing_age >= $${params.length}`;
+      text += ` AND mp.missing_age >= $${params.length}`;
     }
     if (age_to) {
       params.push(age_to);
-      text += ` AND missing_age <= $${params.length}`;
+      text += ` AND mp.missing_age <= $${params.length}`;
+    }
+    if (hair_color) {
+      params.push(hair_color);
+      text += `
+        AND mcp.hair_color IS NOT NULL
+        AND mcp.hair_color <> 'Unknown'
+        AND mcp.hair_color = $${params.length}
+      `;
+    }
+
+    if (eye_color) {
+      params.push(eye_color);
+      text += `
+        AND (
+          (mcp.left_eye_color IS NOT NULL
+           AND mcp.left_eye_color <> 'Unknown'
+           AND mcp.left_eye_color = $${params.length})
+          OR
+          (mcp.right_eye_color IS NOT NULL
+           AND mcp.right_eye_color <> 'Unknown'
+           AND mcp.right_eye_color = $${params.length})
+        )
+      `;
     }
     if (race_ethnicity) {
       params.push(race_ethnicity);
-      text += ` AND race_or_ethnicity = $${params.length}`;
+      text += ` AND mp.race_or_ethnicity = $${params.length}`;
     }
-
     if (sortBy) {
       const dir = sortOrder === "desc" ? "DESC" : "ASC";
-      text += ` ORDER BY ${sortBy} ${dir}`;
+      text += ` ORDER BY mp.${sortBy} ${dir}`;
     }
 
     return { text, params };
   };
-  const buildUnidentified = () => {
-    let text = `SELECT * FROM unidentified_persons WHERE 1=1`;
-    const params = [];
 
-    // always exclude “Uncertain”
-    text += ` AND primary_ethnicity <> 'Uncertain'`;
+  const buildUnidentified = () => {
+    let text = `
+      SELECT up.*, ucp.*
+      FROM unidentified_persons up
+      LEFT JOIN up_circumstances_physical ucp
+        ON up.namus_number = ucp.namus_number
+      WHERE 1=1
+        AND up.primary_ethnicity <> 'Uncertain'
+    `;
+    const params = [];
 
     if (state) {
       params.push(state);
-      text += ` AND state = $${params.length}`;
+      text += ` AND up.state = $${params.length}`;
     }
     if (county) {
       params.push(county);
-      text += ` AND county = $${params.length}`;
+      text += ` AND up.county = $${params.length}`;
     }
     if (city) {
       params.push(city);
-      text += ` AND city = $${params.length}`;
+      text += ` AND up.city = $${params.length}`;
     }
     if (biological_sex) {
       params.push(biological_sex);
-      text += ` AND biological_sex = $${params.length}`;
+      text += ` AND up.biological_sex = $${params.length}`;
     }
-
-    // age‐range overlap
     if (age_from) {
       params.push(age_from);
-      text += ` AND estimated_age_to >= $${params.length}`;
+      text += ` AND ucp.estimated_age_to >= $${params.length}`;
     }
     if (age_to) {
       params.push(age_to);
-      text += ` AND estimated_age_from <= $${params.length}`;
+      text += ` AND ucp.estimated_age_from <= $${params.length}`;
     }
-
-    // include exact match OR “Multiple” when filtering
+    if (hair_color) {
+      params.push(hair_color);
+      text += `
+        AND ucp.hair_color IS NOT NULL
+        AND ucp.hair_color <> 'Unknown'
+        AND ucp.hair_color = $${params.length}
+      `;
+    }
+    if (eye_color) {
+      params.push(eye_color);
+      text += `
+        AND (
+          (ucp.left_eye_color IS NOT NULL
+           AND ucp.left_eye_color <> 'Unknown'
+           AND ucp.left_eye_color = $${params.length})
+          OR
+          (ucp.right_eye_color IS NOT NULL
+           AND ucp.right_eye_color <> 'Unknown'
+           AND ucp.right_eye_color = $${params.length})
+        )
+      `;
+    }
     if (race_ethnicity) {
-      params.push(race_ethnicity); // e.g. 'White'
+      params.push(race_ethnicity);
       params.push("Multiple");
       text += ` AND (
-        primary_ethnicity = $${params.length - 1}
-        OR primary_ethnicity = $${params.length}
+        up.primary_ethnicity = $${params.length - 1}
+        OR up.primary_ethnicity = $${params.length}
       )`;
     }
-
     if (sortBy) {
       const dir = sortOrder === "desc" ? "DESC" : "ASC";
-      text += ` ORDER BY ${sortBy} ${dir}`;
+      text += ` ORDER BY up.${sortBy} ${dir}`;
     }
 
     return { text, params };
@@ -407,13 +480,11 @@ app.get("/persons/search", async (req, res) => {
       db.query(...Object.values(buildMissing())),
       db.query(...Object.values(buildUnidentified())),
     ]);
-
     res.json({
       missing_persons: miss.rows,
       unidentified_persons: unid.rows,
     });
   } catch (err) {
-    console.error(err);
     res
       .status(500)
       .json({ error: "Internal Server Error", details: err.message });

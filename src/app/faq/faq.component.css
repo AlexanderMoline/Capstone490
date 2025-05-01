@@ -1,3 +1,55 @@
-h2 {
-    font-size: large;
+/* ----------  FAQ page tweaks  ---------- */
+
+/* overall wrapper */
+.faq-container {
+  max-width: 820px; /* keeps lines readable on big screens   */
+  margin: 2rem auto 4rem; /* centers the block & adds top/bottom   */
+  padding: 0 1.5rem; /* side-padding for mobile               */
+  color: #f0f0f0; /* softer-white text                     */
+  line-height: 1.55;
+}
+
+/* main heading */
+.faq-container h1 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+}
+
+/* question headings */
+.faq-container h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 1.8rem 0 0.4rem;
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+/* decorative left border for questions */
+.faq-container h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  width: 4px;
+  height: 100%;
+  background: #b80303; /* same red as navbar */
+  border-radius: 2px;
+}
+
+/* answers */
+.faq-container p {
+  margin: 0 0 1.2rem 0;
+  font-size: 0.95rem;
+  text-align: justify; /* nice even edges on wider screens */
+}
+
+/* optional: subtle card background on very large screens */
+@media (min-width: 992px) {
+  .faq-container {
+    background: #3e3939;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+  }
 }

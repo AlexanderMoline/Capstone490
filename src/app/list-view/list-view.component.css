@@ -1,24 +1,27 @@
 .table {
-    max-width: 7in;
-    margin: auto;
+  /* Remove the 7-inch cap */
+  max-width: none; /* or 100% */
+  width: 65vw; /* takes 90 % of the viewport width */
+  margin: auto;
 }
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
-th, td {
-    padding: 10px;
-    text-align: left;
+th,
+td {
+  padding: 10px;
+  text-align: left;
 }
 tr:first-child:hover {
-    background-color: #282323;
+  background-color: #282323;
 }
 tr:nth-child(even) {
-    background-color: #3e3939;
+  background-color: #3e3939;
 }
 tr:hover {
-    background-color: #600707;
+  background-color: #600707;
 }
 a {
-    color: white;
+  color: white;
 }
