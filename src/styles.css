@@ -21,9 +21,9 @@ h2 {
 }
 
 @font-face {
-    font-family: 'InknutAntiqua';
-    src: url('./assets/InknutAntiqua-Medium.ttf');
-  }
+  font-family: "InknutAntiqua";
+  src: url("./assets/InknutAntiqua-Medium.ttf");
+}
 
 /* Style for search forms */
 .field-group {
@@ -45,6 +45,7 @@ form {
   margin: auto;
 }
 
-select, input {
-    width: 3cm;
+select,
+input {
+  width: 3cm;
 }

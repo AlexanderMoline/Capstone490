@@ -81,7 +81,7 @@
 
 /* Bottom Back button */
 .bottom-bar {
-  text-align: center;
+  text-align: left;
   margin-top: 2rem;
 }
 .btn-back {
@@ -115,7 +115,7 @@
 }
 .panel-label {
   display: block;
-  text-align: center;
+  text-align: left;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
   font-weight: bold;
