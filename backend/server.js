@@ -41,6 +41,7 @@ app.get("/mp/search", async (req, res) => {
       city,
       biological_sex,
       missing_age,
+      last_seen_date,
       current_age,
       race_ethnicity,
       tribal_affiliation,
@@ -168,8 +169,7 @@ app.get("/up/search", async (req, res) => {
       age_from,
       age_to,
       primary_ethnicity,
-      height_min,
-      height_max,
+      height_from,
       weight,
       eye_color,
       hair_color,
@@ -210,9 +210,18 @@ app.get("/up/search", async (req, res) => {
       query += ` AND up.biological_sex = $${params.length + 1}`;
       params.push(biological_sex);
     }
-    if (missing_age) {
-      query += ` AND up.missing_age = $${params.length + 1}`;
-      params.push(missing_age);
+    if (age_from && age_to) {
+      params.push(age_from, age_to); // $n , $n+1
+      query += ` AND up.estimated_age_from BETWEEN $${params.length - 1} AND $${params.length}`;
+    } else {
+      if (age_from) {
+        query += ` AND up.estimated_age_from >= $${params.length + 1}`;
+        params.push(age_from);
+      }
+      if (age_to) {
+        query += ` AND up.estimated_age_to   <= $${params.length + 1}`;
+        params.push(age_to);
+      }
     }
 
     if (age_from && age_to) {
@@ -225,12 +234,19 @@ app.get("/up/search", async (req, res) => {
       query += ` AND up.missing_age <= $${params.length + 1}`;
       params.push(age_to);
     }
+    if (height_from) {
+      query += `
+    AND ucp.height_from IS NOT NULL        -- exclude rows with NULL height
+    AND ucp.height_from = $${params.length + 1}
+  `;
+      params.push(Number(height_from)); // bind as a number
+    }
 
     if (primary_ethnicity) {
       query += ` AND up.primary_ethnicity = $${params.length + 1}`;
       params.push(primary_ethnicity);
     }
-
+    /*
     if (height_min && height_max) {
       query += ` AND (
                 ucp.height_from BETWEEN $${params.length + 1} AND $${params.length + 2} 
@@ -258,6 +274,11 @@ app.get("/up/search", async (req, res) => {
                 )
             )`;
       params.push(height_max);
+    }
+*/
+    if (height_from) {
+      query += ` AND ucp.height_from = $${params.length + 1}`; // 👈 correct table alias
+      params.push(Number(height_from)); // ensure numeric binding
     }
 
     if (weight) {
@@ -302,6 +323,7 @@ app.get("/persons/search", async (req, res) => {
     age_from,
     age_to,
     hair_color,
+    eye_color,
     race_ethnicity,
     sortBy,
     sortOrder,
@@ -351,6 +373,21 @@ app.get("/persons/search", async (req, res) => {
         AND mcp.hair_color IS NOT NULL
         AND mcp.hair_color <> 'Unknown'
         AND mcp.hair_color = $${params.length}
+      `;
+    }
+
+    if (eye_color) {
+      params.push(eye_color);
+      text += `
+        AND (
+          (mcp.left_eye_color IS NOT NULL
+           AND mcp.left_eye_color <> 'Unknown'
+           AND mcp.left_eye_color = $${params.length})
+          OR
+          (mcp.right_eye_color IS NOT NULL
+           AND mcp.right_eye_color <> 'Unknown'
+           AND mcp.right_eye_color = $${params.length})
+        )
       `;
     }
     if (race_ethnicity) {
@@ -406,6 +443,20 @@ app.get("/persons/search", async (req, res) => {
         AND ucp.hair_color IS NOT NULL
         AND ucp.hair_color <> 'Unknown'
         AND ucp.hair_color = $${params.length}
+      `;
+    }
+    if (eye_color) {
+      params.push(eye_color);
+      text += `
+        AND (
+          (ucp.left_eye_color IS NOT NULL
+           AND ucp.left_eye_color <> 'Unknown'
+           AND ucp.left_eye_color = $${params.length})
+          OR
+          (ucp.right_eye_color IS NOT NULL
+           AND ucp.right_eye_color <> 'Unknown'
+           AND ucp.right_eye_color = $${params.length})
+        )
       `;
     }
     if (race_ethnicity) {

@@ -1,0 +1,58 @@
+/* ----------  Contact page ---------- */
+
+.contact-container {
+  max-width: 960px;
+  margin: 2.5rem auto 4rem;
+  padding: 0 1.5rem;
+  color: #f0f0f0;
+}
+
+.contact-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.contact-table th,
+.contact-table td {
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+}
+
+.contact-table thead th {
+  background: #600707;
+  font-weight: 600;
+}
+
+.contact-table tbody tr:nth-child(even) {
+  background: #2e2b2b;
+}
+.contact-table tbody tr:nth-child(odd) {
+  background: #242222;
+}
+
+.contact-table tbody tr:hover {
+  background: #600707;
+}
+
+.contact-table a {
+  color: #d1e7ff;
+  text-decoration: underline;
+}
+.contact-table a:hover {
+  color: #ffffff;
+}
+
+/* Optional slight rounding on large screens */
+@media (min-width: 992px) {
+  .contact-table {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+}

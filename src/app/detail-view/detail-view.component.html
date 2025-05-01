@@ -75,7 +75,9 @@
         </div>
         <div class="attribute">
           <label>Height</label><br />
-          <span>{{ caseDetails?.height || "N/A" }}</span>
+          <span>{{
+            caseDetails?.height_from || caseDetails?.height || "N/A"
+          }}</span>
         </div>
       </div>
 
@@ -120,7 +122,7 @@
       <div class="detail-row">
         <div class="attribute">
           <label>Circumstances of Disappearance</label><br />
-          <span>{{ caseDetails?.circumstance_detail || "N/A" }}</span>
+          <span>{{ caseDetails?.description || "N/A" }}</span>
         </div>
       </div>
     </div>

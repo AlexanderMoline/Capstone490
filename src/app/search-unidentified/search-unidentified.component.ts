@@ -5,11 +5,11 @@ import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-search-unidentified',
-  imports: [ RouterLink, ReactiveFormsModule ],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './search-unidentified.component.html',
 })
 export class SearchUnidentifiedComponent {
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {}
 
   private searchParams: Map<string, string> = new Map();
 
@@ -27,32 +27,35 @@ export class SearchUnidentifiedComponent {
     date: new FormControl(''),
     state: new FormControl(''),
     city: new FormControl(''),
-    county: new FormControl('')
+    county: new FormControl(''),
   });
 
   onSubmit() {
     this.searchParams.clear();
     this.addControlToSearch('namusNum', 'namus_number');
-    this.addControlToSearch('caseNum', 'case_number')
+    this.addControlToSearch('caseNum', 'case_number');
     this.addControlToSearch('ncmecNum', 'ncmec_number');
     this.addControlToSearch('sex', 'biological_sex');
     this.addControlToSearch('race', 'primary_ethnicity');
-    this.addControlToSearch('ageFrom', 'age_from');
-    this.addControlToSearch('ageTo', 'age_to');
+    this.addControlToSearch('ageFrom', 'estimated_age_from');
+    this.addControlToSearch('ageTo', 'estimated_age_to');
     this.addControlToSearch('hairColor', 'hair_color');
     this.addControlToSearch('eyeColor', 'eye_color');
-    this.addControlToSearch('height', 'height_min');
+    this.addControlToSearch('height', 'height_from');
     this.addControlToSearch('state', 'state');
     this.addControlToSearch('city', 'city');
     this.addControlToSearch('county', 'county');
+    this.addControlToSearch('date', 'date_found');
     var url = this.backendService.constructSearchUrl(this.searchParams, 'up');
     console.log(url);
     this.backendService.getData(url);
   }
-  
+
   private addControlToSearch(controlName: string, parameterName: string) {
     var controlValue = this.search.get(controlName)?.value;
 
-    if (controlValue != null) { this.searchParams.set(parameterName, controlValue); }
+    if (controlValue != null) {
+      this.searchParams.set(parameterName, controlValue);
+    }
   }
 }
