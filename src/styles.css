@@ -8,9 +8,7 @@ body {
   background: #282323;
   color: white;
 }
-.content {
-  margin: 30px;
-}
+
 h1 {
   text-align: center;
 }
@@ -48,4 +46,14 @@ form {
 select,
 input {
   width: 3cm;
+}
+.home-page.conent {
+  margin: 0 !important;
+}
+
+/* 2) Make absolutely sure the nav has no bottom gap */
+nav {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
 }
