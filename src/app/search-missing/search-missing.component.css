@@ -1,0 +1,195 @@
+:root {
+  --bg-dark: #282323;
+  --card-bg: #4b4444;
+  --text-light: #eee;
+  --text-muted: #ccc;
+  --accent: #600707;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Page title */
+.page-title {
+  text-align: center;
+  color: var(--text-light);
+  font-family: "Inknut Antiqua", serif;
+  margin: 2rem 0 1rem;
+  font-size: 2rem;
+}
+
+/* Form wrapper */
+.search-form {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card style for each section */
+.form-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* Section headings */
+.form-card h2 {
+  color: var(--text-light);
+  font-family: "Inknut Antiqua", serif;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.form-card h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 0.5rem;
+}
+
+/* Field groups */
+.field-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+/* Individual field */
+.field {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels and inputs */
+.field label {
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+.field input,
+.field select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  background: #222;
+  color: var(--text-light);
+}
+
+/* Height range group */
+.range-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.range-group span {
+  color: var(--text-light);
+}
+
+/* Submit button */
+.submit-wrapper {
+  text-align: center;
+}
+.submit-wrapper button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--shadow);
+  transition: background 0.2s ease;
+}
+.submit-wrapper button:hover {
+  background: #500607;
+}
+
+/* Responsive: stack fields */
+@media (max-width: 600px) {
+  .field-group {
+    flex-direction: column;
+  }
+}
+.form-card {
+  background: #4b4444;
+}
+
+.submit-wrapper button {
+  outline: solid;
+  outline-color: #d4af37;
+}
+
+/* 1) Box-sizing reset for predictable sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2) Make the form wrapper truly fluid */
+.search-form {
+  width: 100%;
+  max-width: 800px; /* keeps it from growing too wide */
+  margin: 0 auto 2rem; /* centers on large screens */
+  padding: 0 1rem; /* horizontal breathing room */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 3) Cards fill full width of wrapper */
+.form-card {
+  width: 100%; /* span entire form width */
+  background: #4b4444; /* as before */
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* 4) Fields stretch and wrap gracefully */
+.field-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.field {
+  flex: 1 1 0; /* allow shrink/grow equally */
+  min-width: 150px; /* don’t get too narrow */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 5) Inputs/selects fill their field container */
+.field input,
+.field select {
+  width: 100%; /* now full width inside .field */
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  background: #222;
+  color: var(--text-light);
+}
+
+/* 6) Submit button centered and fluid */
+.submit-wrapper {
+  text-align: center;
+}
+.submit-wrapper button {
+  width: auto; /* can also use width: 100% if you prefer full-width */
+  max-width: 250px;
+  outline: solid #d4af37;
+}
+
+/* 7) Mobile: remove min-width so fields stack without overflow */
+@media (max-width: 600px) {
+  .field {
+    min-width: 0;
+  }
+}

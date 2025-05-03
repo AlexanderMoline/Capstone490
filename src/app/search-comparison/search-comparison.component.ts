@@ -8,6 +8,7 @@ import { BackendService } from '../backend.service';
   selector: 'app-search-comparison',
   imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './search-comparison.component.html',
+  styleUrl: './search-comparison.component.css',
 })
 export class SearchComparisonComponent {
   private searchParams = new Map<string, string>();

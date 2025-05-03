@@ -1,129 +1,131 @@
-<h1>Search by Unidentified Persons</h1>
+<!-- search-up.component.html -->
+<h1 class="page-title">Search by Unidentified Persons</h1>
 
-<form [formGroup]="search">
-  <h2>Case Numbers</h2>
-  <div class="field-group">
-    <div>
-      <label for="namus#">Namus #</label><br />
-      <input id="namus#" type="text" formControlName="namusNum" /><br />
+<form [formGroup]="search" class="search-form">
+  <!-- Case Numbers -->
+  <section class="form-card">
+    <h2>Case Numbers</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="namus#">NAMUS #</label>
+        <input id="namus#" type="text" formControlName="namusNum" />
+      </div>
+      <div class="field">
+        <label for="case#">Case #</label>
+        <input id="case#" type="text" formControlName="caseNum" />
+      </div>
+      <div class="field">
+        <label for="ncmec#">NCMEC #</label>
+        <input id="ncmec#" type="text" formControlName="ncmecNum" />
+      </div>
     </div>
-    <div>
-      <label for="case#">Case #</label><br />
-      <input id="case#" type="text" formControlName="caseNum" /><br />
-    </div>
-    <div>
-      <label for="ncmec#">NCMEC #</label><br />
-      <input id="ncmec#" type="text" formControlName="ncmecNum" /><br />
-    </div>
-  </div>
+  </section>
 
-  <h2>Demographics</h2>
-  <div class="field-group">
-    <div style="width: 3cm">
-      <label for="age-from">Estimated age</label><br />
-      <input
-        id="age-from"
-        type="text"
-        style="width: 0.75cm"
-        formControlName="ageFrom"
-      />
-      to
-      <input
-        id="age-to"
-        type="text"
-        style="width: 0.75cm"
-        formControlName="ageTo"
-      /><br />
+  <!-- Demographics -->
+  <section class="form-card">
+    <h2>Demographics</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="age-from">Estimated Age</label>
+        <div class="range-group">
+          <input id="age-from" type="text" formControlName="ageFrom" />
+          <span>to</span>
+          <input id="age-to" type="text" formControlName="ageTo" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="sex">Sex</label>
+        <select id="sex" formControlName="sex">
+          <option value=""></option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Unsure">Other/Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="race">Race</label>
+        <select id="race" formControlName="race">
+          <option value=""></option>
+          <option value="White / Caucasian">White / Caucasian</option>
+          <option value="Black / African American">
+            Black / African American
+          </option>
+          <option value="Asian">Asian</option>
+          <option value="Hawaiian / Pacific Islander">
+            Hawaiian / Pacific Islander
+          </option>
+          <option value="Hispanic / Latino">Hispanic / Latino</option>
+          <option value="American Indian / Alaska Native">
+            American Indian / Alaska Native
+          </option>
+          <option value="Multiple">Multiple</option>
+          <option value="Uncertain">Uncertain</option>
+        </select>
+      </div>
     </div>
-    <div>
-      <label for="sex">Sex</label><br />
-      <select id="sex" formControlName="sex">
-        <option></option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Unsure">Other/Unknown</option>
-      </select>
-    </div>
-    <div>
-      <label for="race">Race</label><br />
-      <select id="race" formControlName="race">
-        <option></option>
-        <option value="White / Caucasian">White/Caucasian</option>
-        <option value="Black / African American">Black/African American</option>
-        <option value="Asian">Asian</option>
-        <option value="Hawaiian / Pacific Islander">
-          Hawaiian/Pacific Islander
-        </option>
-        <option value="Hispanic / Latino">Hispanic/Latino</option>
-        <option value="American Indian / Alaska Native">
-          American Indian/Native Alaskan
-        </option>
-        <option value="Multiple">Multiple</option>
-        <option value="Uncertain">Uncertain</option>
-      </select>
-    </div>
-  </div>
+  </section>
 
-  <h2>Physical Appearance</h2>
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="hair-color">Hair Color</label><br />
-      <select id="hair-color" formControlName="hairColor">
-        <option></option>
-        <option value="Black">Black</option>
-        <option value="Brown">Brown</option>
-        <option value="Gray or Partially Gray">Gray</option>
-        <option value="Blond/Strawberry">Blond/Strawberry</option>
-        <option value="Red/Auburn">Red/Auburn</option>
-        <option value="Unknown">Unknown</option>
-      </select>
+  <!-- Physical Appearance -->
+  <section class="form-card">
+    <h2>Physical Appearance</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="hair-color">Hair Color</label>
+        <select id="hair-color" formControlName="hairColor">
+          <option value=""></option>
+          <option value="Black">Black</option>
+          <option value="Brown">Brown</option>
+          <option value="Gray or Partially Gray">Gray or Partially Gray</option>
+          <option value="Blond/Strawberry">Blond/Strawberry</option>
+          <option value="Red/Auburn">Red/Auburn</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="eye-color">Eye Color</label>
+        <select id="eye-color" formControlName="eyeColor">
+          <option value=""></option>
+          <option value="Brown">Brown</option>
+          <option value="Green">Green</option>
+          <option value="Blue">Blue</option>
+          <option value="Hazel">Hazel</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="height">Height (in)</label>
+        <input id="height" type="text" formControlName="height" />
+      </div>
     </div>
-    <div>
-      <label for="eye-color">Eye Color</label><br />
-      <select id="eye-color" formControlName="eyeColor">
-        <option></option>
-        <option value="Brown">Brown</option>
-        <option value="Green">Green</option>
-        <option value="Blue">Blue</option>
-        <option value="Hazel">Hazel</option>
-        <option value="Unknown">Unknown</option>
-      </select>
-    </div>
-  </div>
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="height">Height (in)</label><br />
-      <input id="height" type="text" formControlName="height" /><br />
-    </div>
-  </div>
+  </section>
 
-  <h2>Circumstances</h2>
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="date">Date found</label><br />
-      <input id="date" type="date" formControlName="date" />
+  <!-- Circumstances -->
+  <section class="form-card">
+    <h2>Circumstances</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="date">Date Found</label>
+        <input id="date" type="date" formControlName="date" />
+      </div>
     </div>
-  </div>
-  <div class="field-group" style="padding-bottom: 2px">
-    <label>Location found:</label>
-  </div>
-  <div class="field-group">
-    <div>
-      <label for="state">State</label><br />
-      <input id="state" type="text" formControlName="state" />
+    <div class="field-group">
+      <div class="field">
+        <label for="state">State</label>
+        <input id="state" type="text" formControlName="state" />
+      </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input id="city" type="text" formControlName="city" />
+      </div>
+      <div class="field">
+        <label for="county">County/Parish</label>
+        <input id="county" type="text" formControlName="county" />
+      </div>
     </div>
-    <div>
-      <label for="city">City</label><br />
-      <input id="city" type="text" formControlName="city" />
-    </div>
-    <div>
-      <label for="county">County/Parish</label><br />
-      <input id="county" type="text" formControlName="county" />
-    </div>
-  </div>
-  <div class="submit-button">
-    <button (click)="onSubmit()" routerLink="/search/up/results" type="submit">
-      Search
-    </button>
+  </section>
+
+  <!-- Submit -->
+  <div class="submit-wrapper">
+    <button (click)="onSubmit()" routerLink="/search/up/results">Search</button>
   </div>
 </form>

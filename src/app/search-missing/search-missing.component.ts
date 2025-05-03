@@ -5,11 +5,12 @@ import { BackendService } from '../backend.service';
 
 @Component({
   selector: 'app-search-missing',
-  imports: [ RouterLink, ReactiveFormsModule ],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './search-missing.component.html',
+  styleUrl: './search-missing.component.css',
 })
 export class SearchMissingComponent {
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {}
 
   private searchParams: Map<string, string> = new Map();
 
@@ -32,13 +33,13 @@ export class SearchMissingComponent {
     dateLastContact: new FormControl(''),
     stateLast: new FormControl(''),
     cityLast: new FormControl(''),
-    countyLast: new FormControl('')
+    countyLast: new FormControl(''),
   });
 
   onSubmit() {
     this.searchParams.clear();
     this.addControlToSearch('namusNum', 'case_number');
-    this.addControlToSearch('ncmecNum', 'ncmec_number')
+    this.addControlToSearch('ncmecNum', 'ncmec_number');
     this.addControlToSearch('firstName', 'first_name');
     this.addControlToSearch('middleName', 'middle_name');
     this.addControlToSearch('lastName', 'last_name');
@@ -59,10 +60,12 @@ export class SearchMissingComponent {
     console.log(url);
     this.backendService.getData(url);
   }
-  
+
   private addControlToSearch(controlName: string, parameterName: string) {
     var controlValue = this.search.get(controlName)?.value;
 
-    if (controlValue != null) { this.searchParams.set(parameterName, controlValue); }
+    if (controlValue != null) {
+      this.searchParams.set(parameterName, controlValue);
+    }
   }
 }

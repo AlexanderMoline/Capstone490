@@ -1,163 +1,158 @@
-<h1>Search by Missing Persons</h1>
+<!-- search-mp.component.html -->
+<h1 class="page-title">Search by Missing Persons</h1>
 
-<form [formGroup]="search">
-  <h2>Case Numbers</h2>
-  <div class="field-group">
-    <div>
-      <label for="namus#">Case #</label><br />
-      <input id="namus#" type="text" formControlName="namusNum" /><br />
+<form [formGroup]="search" class="search-form">
+  <section class="form-card">
+    <h2>Case Numbers</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="namus#">Case #</label>
+        <input id="namus#" type="text" formControlName="namusNum" />
+      </div>
+      <div class="field">
+        <label for="ncmec#">NCMEC #</label>
+        <input id="ncmec#" type="text" formControlName="ncmecNum" />
+      </div>
     </div>
-    <div>
-      <label for="ncmec#">NCMEC #</label><br />
-      <input id="ncmec#" type="text" formControlName="ncmecNum" /><br />
-    </div>
-  </div>
+  </section>
 
-  <h2>Demographics</h2>
-  <div class="field-group">
-    <div>
-      <label for="fname">Legal First Name</label><br />
-      <input id="fname" type="text" formControlName="firstName" /><br />
+  <section class="form-card">
+    <h2>Demographics</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="fname">Legal First Name</label>
+        <input id="fname" type="text" formControlName="firstName" />
+      </div>
+      <div class="field">
+        <label for="mname">Middle Name</label>
+        <input id="mname" type="text" formControlName="middleName" />
+      </div>
+      <div class="field">
+        <label for="lname">Legal Last Name</label>
+        <input id="lname" type="text" formControlName="lastName" />
+      </div>
     </div>
-    <div>
-      <label for="mname">Middle Name</label><br />
-      <input id="mname" type="text" formControlName="middleName" /><br />
+    <div class="field-group">
+      <div class="field">
+        <label for="age-current">Current Age</label>
+        <input id="age-current" type="text" formControlName="ageCurrent" />
+      </div>
+      <div class="field">
+        <label for="age-missing">Age Missing</label>
+        <input id="age-missing" type="text" formControlName="ageMissing" />
+      </div>
+      <div class="field">
+        <label for="sex">Sex</label>
+        <select id="sex" formControlName="sex">
+          <option value=""></option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Unsure">Other/Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="race">Race</label>
+        <select id="race" formControlName="race">
+          <option value=""></option>
+          <option value="White / Caucasian">White / Caucasian</option>
+          <option value="Black / African American">
+            Black / African American
+          </option>
+          <option value="Asian">Asian</option>
+          <option value="Hawaiian / Pacific Islander">
+            Hawaiian / Pacific Islander
+          </option>
+          <option value="Hispanic / Latino">Hispanic / Latino</option>
+          <option value="American Indian / Alaska Native">
+            American Indian / Alaska Native
+          </option>
+          <option value="Unknown">Other/Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="tribal-affiliation">Tribal Affiliation</label>
+        <select id="tribal-affiliation" formControlName="tribalAffiliation">
+          <option value=""></option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
     </div>
-    <div>
-      <label for="lname">Legal Last Name</label><br />
-      <input id="lname" type="text" formControlName="lastName" /><br />
-    </div>
-  </div>
-  <div class="field-group">
-    <div>
-      <label for="age-current">Current Age</label><br />
-      <input id="age-current" type="text" formControlName="ageCurrent" /><br />
-    </div>
-    <div>
-      <label for="age-missing">Age Missing</label><br />
-      <input id="age-missing" type="text" formControlName="ageMissing" /><br />
-    </div>
-  </div>
-  <div class="field-group">
-    <div>
-      <label for="sex">Sex</label><br />
-      <select id="sex" formControlName="sex">
-        <option></option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Unsure">Other/Unknown</option>
-      </select>
-    </div>
-    <div>
-      <label for="race">Race</label><br />
-      <select id="race" formControlName="race">
-        <option></option>
-        <option value="White / Caucasian">White/Caucasian</option>
-        <option value="Black / African American">Black/African American</option>
-        <option value="Asian">Asian</option>
-        <option value="Hawaiian / Pacific Islander">
-          Hawaiian/Pacific Islander
-        </option>
-        <option value="Hispanic / Latino">Hispanic/Latino</option>
-        <option value="American Indian / Alaska Native">
-          American Indian/Native Alaskan
-        </option>
-        <option value="Unknown">Other/Unknown</option>
-      </select>
-    </div>
-    <div>
-      <label for="tribal-affiliation">Tribal Affiliation</label><br />
-      <select id="tribal-affiliation" formControlName="tribalAffiliation">
-        <option></option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </div>
-  </div>
+  </section>
 
-  <h2>Physical Appearance</h2>
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="hair-color">Hair Color</label><br />
-      <select id="hair-color" formControlName="hairColor">
-        <option></option>
-        <option value="Bald">Bald</option>
-        <option value="Black">Black</option>
-        <option value="Brown">Brown</option>
-        <option value="Gray or Partially Gray">Gray</option>
-        <option value="Blond/Strawberry">Blond/Strawberry</option>
-        <option value="Red/Auburn">Red/Auburn</option>
-        <option value="White">White</option>
-        <option value="Blue">Blue</option>
-        <option value="Unknown">Unknown</option>
-      </select>
+  <section class="form-card">
+    <h2>Physical Appearance</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="hair-color">Hair Color</label>
+        <select id="hair-color" formControlName="hairColor">
+          <option value=""></option>
+          <option value="Bald">Bald</option>
+          <option value="Black">Black</option>
+          <option value="Brown">Brown</option>
+          <option value="Gray or Partially Gray">Gray or Partially Gray</option>
+          <option value="Blond/Strawberry">Blond/Strawberry</option>
+          <option value="Red/Auburn">Red/Auburn</option>
+          <option value="White">White</option>
+          <option value="Blue">Blue</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="eye-color">Eye Color</label>
+        <select id="eye-color" formControlName="eyeColor">
+          <option value=""></option>
+          <option value="Brown">Brown</option>
+          <option value="Green">Green</option>
+          <option value="Blue">Blue</option>
+          <option value="Hazel">Hazel</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="height-from">Height (in)</label>
+        <div class="range-group">
+          <input id="height-from" type="text" formControlName="heightFrom" />
+          <span>to</span>
+          <input id="height-to" type="text" formControlName="heightTo" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="weight">Weight</label>
+        <input id="weight" type="text" formControlName="weight" />
+      </div>
     </div>
-    <div>
-      <label for="eye-color">Eye Color</label><br />
-      <select id="eye-color" formControlName="eyeColor">
-        <option></option>
-        <option value="Brown">Brown</option>
-        <option value="Green">Green</option>
-        <option value="Blue">Blue</option>
-        <option value="Hazel">Hazel</option>
-        <option value="Unknown">Unknown</option>
-      </select>
-    </div>
-  </div>
-  <div class="field-group" style="justify-content: space-around">
-    <div style="width: 3cm">
-      <label for="height-from">Height (in)</label><br />
-      <input
-        id="height-from"
-        type="text"
-        style="width: 0.75cm"
-        formControlName="heightFrom"
-      />
-      to
-      <input
-        id="height-to"
-        type="text"
-        style="width: 0.75cm"
-        formControlName="heightTo"
-      /><br />
-    </div>
-    <div>
-      <label for="weight">Weight</label><br />
-      <input id="weight" type="text" formControlName="weight" /><br />
-    </div>
-  </div>
+  </section>
 
-  <h2>Circumstances</h2>
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="date-last-contact">Date of last contact</label><br />
-      <input
-        id="date-last-contact"
-        type="date"
-        formControlName="dateLastContact"
-      />
+  <section class="form-card">
+    <h2>Circumstances</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="date-last-contact">Date of last contact</label>
+        <input
+          id="date-last-contact"
+          type="date"
+          formControlName="dateLastContact"
+        />
+      </div>
     </div>
-  </div>
-  <div class="field-group" style="padding-bottom: 2px">
-    <label>Last Known Location:</label>
-  </div>
-  <div class="field-group">
-    <div>
-      <label for="state-last">State</label><br />
-      <input id="state-last" type="text" formControlName="stateLast" />
+    <div class="field-group">
+      <div class="field">
+        <label for="state-last">State</label>
+        <input id="state-last" type="text" formControlName="stateLast" />
+      </div>
+      <div class="field">
+        <label for="city-last">City</label>
+        <input id="city-last" type="text" formControlName="cityLast" />
+      </div>
+      <div class="field">
+        <label for="county-last">County/Parish</label>
+        <input id="county-last" type="text" formControlName="countyLast" />
+      </div>
     </div>
-    <div>
-      <label for="city-last">City</label><br />
-      <input id="city-last" type="text" formControlName="cityLast" />
-    </div>
-    <div>
-      <label for="county-last">County/Parish</label><br />
-      <input id="county-last" type="text" formControlName="countyLast" />
-    </div>
-  </div>
-  <div class="submit-button">
-    <button (click)="onSubmit()" routerLink="/search/mp/results" type="submit">
-      Search
-    </button>
+  </section>
+
+  <div class="submit-wrapper">
+    <button (click)="onSubmit()" routerLink="/search/mp/results">Search</button>
   </div>
 </form>
