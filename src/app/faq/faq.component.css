@@ -1,55 +1,86 @@
-/* ----------  FAQ page tweaks  ---------- */
-
-/* overall wrapper */
-.faq-container {
-  max-width: 820px; /* keeps lines readable on big screens   */
-  margin: 2rem auto 4rem; /* centers the block & adds top/bottom   */
-  padding: 0 1.5rem; /* side-padding for mobile               */
-  color: #f0f0f0; /* softer-white text                     */
-  line-height: 1.55;
+:root {
+  /* ensure these already defined in global styles; repeated here if needed */
+  --card-bg: #3f3939;
+  --header-underline: #d4af37;
+  --shadow: rgba(0, 0, 0, 0.4);
+  --text-light: #eee;
+  --text-muted: #ccc;
 }
 
-/* main heading */
+.faq-container {
+  max-width: 820px;
+  margin: 2rem auto 4rem;
+  padding: 1rem 1.5rem;
+  background: #4b4444;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--shadow);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
 .faq-container h1 {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   font-size: 2rem;
-  letter-spacing: 0.5px;
 }
 
-/* question headings */
-.faq-container h2 {
+.faq-card {
+  background: var(--bg-dark);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px var(--shadow);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.faq-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow);
+}
+
+.faq-card h2 {
+  position: relative;
   font-size: 1.15rem;
   font-weight: 600;
-  margin: 1.8rem 0 0.4rem;
-  position: relative;
-  padding-left: 1.4rem;
+  margin: 0 0 0.75rem;
+  padding-left: 1.25rem;
+  color: #fff;
 }
 
-/* decorative left border for questions */
-.faq-container h2::before {
+.faq-card h2::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0.2rem;
   width: 4px;
-  height: 100%;
-  background: #b80303; /* same red as navbar */
+  height: calc(100% - 0.4rem);
+  background: var(--header-underline);
   border-radius: 2px;
 }
 
-/* answers */
-.faq-container p {
-  margin: 0 0 1.2rem 0;
+.faq-card p {
+  margin: 0 0 1rem;
   font-size: 0.95rem;
-  text-align: justify; /* nice even edges on wider screens */
+  color: #ddd;
+  text-align: left;
 }
 
-/* optional: subtle card background on very large screens */
-@media (min-width: 992px) {
+.faq-card a {
+  color: var(--header-underline);
+  text-decoration: underline;
+}
+
+.faq-card a:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
   .faq-container {
-    background: #3e3939;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.45);
+    padding: 1rem;
+  }
+  .faq-card {
+    padding: 1rem;
   }
 }
