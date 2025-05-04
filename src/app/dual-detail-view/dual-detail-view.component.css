@@ -1,58 +1,78 @@
-/* Overall page */
 .dual-detail-page {
-  display: flex;
-  flex-direction: column;
-  background: #3e3939;
-  color: #eee;
-  padding: 25px;
   max-width: 10in;
-  margin: auto;
-  box-sizing: border-box;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: var(--bg-dark);
+  color: var(--text-light);
 }
 
-/* Back link */
 .navigation .back-link {
-  color: #fff;
+  color: var(--text-light);
   text-decoration: none;
+  font-weight: bold;
   margin-bottom: 1rem;
   display: inline-block;
 }
+.navigation .back-link:hover {
+  color: #fff;
+}
 
-/* Two‐panel row */
 .dual-detail-content {
   display: flex;
-  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Divider line */
+.divider {
+  width: 2px;
+  background-color: var(--divider-color);
+  align-self: stretch;
+}
+
+/* Panels */
+.detail-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
 }
 
-/* Panel container */
-.detail-panel {
-  flex: 1;
-  background: transparent; /* no white card */
+/* Base card */
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px var(--shadow);
 }
 
-/* Portrait */
-.portrait-section {
+/* Combined Portrait + Demographics */
+.card-portrait-demographics {
   text-align: center;
-  margin-bottom: 1rem;
 }
-.portrait-section img {
-  display: inline-block;
+.card-portrait-demographics .portrait-img {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid #332f2d;
+  border-radius: 50%;
+  border: 3px solid var(--header-underline);
+  background: #fff;
+  margin-bottom: 1rem;
 }
 
-/* Section styling (reuses your detail-view patterns) */
-.info-section {
-  margin-top: 1.5rem;
+/* Section headers */
+.section-header {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--header-underline);
 }
 .section-header h2 {
   color: #fff;
-  margin-bottom: 0.5rem;
+  font-family: "Inknut Antiqua", serif;
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem;
 }
+
+/* Details grid */
 .details {
   width: 100%;
 }
@@ -65,58 +85,39 @@
 .attribute {
   flex: 1 1 30%;
 }
+.attribute.full-width {
+  flex: 1 1 100%;
+}
 .attribute label {
-  font-weight: normal;
-  color: #ccc;
-}
-.attribute span {
-  font-weight: bold;
-  color: #eee;
-}
-
-/* Gutter */
-.gutter {
-  width: 2rem;
-}
-
-/* Bottom Back button */
-.bottom-bar {
-  text-align: left;
-  margin-top: 2rem;
-}
-.btn-back {
-  background: #ddd;
-  color: #332f2d;
-  border: none;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.btn-back:hover {
-  background: #ccc;
-}
-
-.gutter {
-  width: 4px; /* thin line */
-  background-color: rgba(255, 255, 255, 0.2);
-  align-self: stretch; /* make it full-height of the flex container */
-  margin: 0 1rem; /* some horizontal breathing room */
-}
-.case-type {
-  /* Simple text underline: */
-  text-decoration: underline;
-
-  /* If you prefer a custom thickness or color, use a bottom border instead:
-  border-bottom: 2px solid #eee;
-  padding-bottom: 0.25rem;
-  */
-}
-.panel-label {
   display: block;
-  text-align: left;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+.attribute span,
+.attribute p {
+  color: #fff;
   font-weight: bold;
+  line-height: 1.4;
+}
+
+/* Case headings */
+.case-type {
+  text-decoration: underline;
+  margin: 0;
+  font-size: 1.1rem;
+}
+.case-title {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+}
+
+/* Responsive stack */
+@media (max-width: 768px) {
+  .dual-detail-content {
+    flex-direction: column;
+  }
+  .divider {
+    display: none;
+  }
 }

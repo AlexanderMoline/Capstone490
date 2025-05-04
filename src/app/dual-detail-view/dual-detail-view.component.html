@@ -3,280 +3,288 @@
   <!-- Back link -->
   <nav class="navigation">
     <a class="back-link" [routerLink]="['/search/persons/results']">
-      &larr; Return to Database Comparison
+      ← Return to Database Comparison
     </a>
   </nav>
 
-  <!-- Two columns: missing on left, unidentified on right -->
   <div class="dual-detail-content">
-    <!-- Missing Person Panel -->
-    <div class="detail-panel">
-      <h1 class="case-type">Missing Person</h1>
+    <!-- Missing Person Column -->
+    <div class="detail-panel" role="region" aria-labelledby="mp-heading">
+      <h1 id="mp-heading" class="case-type">Missing Person</h1>
       <h2 class="case-title">Case Number {{ missing?.case_number }}</h2>
 
-      <!-- Portrait -->
-      <section class="portrait-section">
+      <!-- Portrait + Demographics Card -->
+      <section
+        class="card card-portrait-demographics"
+        role="region"
+        aria-labelledby="mp-demo-heading"
+      >
         <img
+          class="portrait-img"
           [src]="
             missing?.portrait_url ||
             'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
           "
-          alt="Missing portrait"
+          alt="Portrait"
         />
-      </section>
-
-      <!-- Demographics -->
-      <section class="info-section demographics">
-        <header class="section-header"><h2>Demographics</h2></header>
+        <header class="section-header">
+          <h2 id="mp-demo-heading">Demographics</h2>
+        </header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>First Name</label><br />
-              <span>{{ missing?.first_name || "--" }}</span>
+              <label>First Name</label
+              ><span>{{ missing?.first_name || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Middle Name</label><br />
-              <span>{{ missing?.middle_name || "--" }}</span>
+              <label>Middle Name</label
+              ><span>{{ missing?.middle_name || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Last Name</label><br />
-              <span>{{ missing?.last_name || "--" }}</span>
-            </div>
-          </div>
-          <div class="detail-row">
-            <div class="attribute">
-              <label>Biological Sex</label><br />
-              <span>{{ missing?.biological_sex || "--" }}</span>
-            </div>
-            <div class="attribute">
-              <label>Race / Ethnicity</label><br />
-              <span>{{ missing?.race_or_ethnicity || "--" }}</span>
-            </div>
-            <div class="attribute">
-              <label>Location Found</label><br />
-              <span>
-                {{ missing?.city || "--" }}, {{ missing?.county || "--" }},
-                {{ missing?.state || "--" }}
-              </span>
+              <label>Last Name</label
+              ><span>{{ missing?.last_name || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Missing Age</label><br />
-              <span>{{ missing?.missing_age || "--" }}</span>
+              <label>Sex</label
+              ><span>{{ missing?.biological_sex || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Current Age</label><br />
-              <span>{{ missing?.current_age || "--" }}</span>
+              <label>Race/Ethnicity</label
+              ><span>{{ missing?.race_or_ethnicity || "--" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Last Known Location</label
+              ><span
+                >{{ missing?.city || "--" }}, {{ missing?.county || "--" }},
+                {{ missing?.state || "--" }}</span
+              >
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Height</label><br />
-              <span>{{ missing?.height || "--" }} inches</span>
+              <label>Missing Age</label
+              ><span>{{ missing?.missing_age || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Weight</label><br />
-              <span>{{ missing?.weight || "--" }} lbs</span>
+              <label>Current Age</label
+              ><span>{{ missing?.current_age || "--" }}</span>
+            </div>
+            <div class="attribute">
+              <label>Height</label><span>{{ missing?.height || "--" }} in</span>
+            </div>
+            <div class="attribute">
+              <label>Weight</label
+              ><span>{{ missing?.weight || "--" }} lbs</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Physical Description -->
-      <section class="info-section physical-description">
-        <header class="section-header"><h2>Physical Description</h2></header>
+      <!-- Physical Description Card -->
+      <section
+        class="card card-physical"
+        role="region"
+        aria-labelledby="mp-phys-heading"
+      >
+        <header class="section-header">
+          <h2 id="mp-phys-heading">Physical Description</h2>
+        </header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Eyes: Left / Right</label><br />
-              <span
+              <label>Eyes (L / R)</label
+              ><span
                 >{{ missing?.left_eye_color || "--" }} /
                 {{ missing?.right_eye_color || "--" }}</span
               >
             </div>
             <div class="attribute">
-              <label>Hair Color</label><br />
-              <span>{{ missing?.hair_color || "--" }}</span>
+              <label>Hair Color</label
+              ><span>{{ missing?.hair_color || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Head Hair Description</label><br />
-              <span>{{ missing?.hair_description || "--" }}</span>
+              <label>Head Hair</label
+              ><span>{{ missing?.hair_description || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Facial Hair Description</label><br />
-              <span>{{ missing?.facial_hair_description || "--" }}</span>
+              <label>Facial Hair</label
+              ><span>{{ missing?.facial_hair_description || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Body Hair Description</label><br />
-              <span>{{ missing?.body_hair_description || "--" }}</span>
+              <label>Body Hair</label
+              ><span>{{ missing?.body_hair_description || "--" }}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Circumstances -->
-      <section class="info-section circumstances">
-        <header class="section-header"><h2>Circumstances</h2></header>
+      <!-- Circumstances Card -->
+      <section
+        class="card card-circumstances"
+        role="region"
+        aria-labelledby="mp-circ-heading"
+      >
+        <header class="section-header">
+          <h2 id="mp-circ-heading">Circumstances</h2>
+        </header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Last Seen Date</label><br />
-              <span>
-                {{
-                  missing?.last_seen_date
-                    ? (missing.last_seen_date | date: "longDate")
-                    : "--"
-                }}
-              </span>
+              <label>Last Seen Date</label
+              ><span>{{ missing?.last_seen_date | date: "longDate" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute full-width">
+              <label>Details</label>
+              <p>{{ missing?.description || "--" }}</p>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Circumstances Detail</label><br />
-              <span>{{ missing?.description || "--" }}</span>
-            </div>
-          </div>
-          <div class="detail-row">
-            <div class="attribute">
-              <label>Articles Info</label><br />
-              <span>{{ missing?.articledescription || "--" }}</span>
+              <label>Articles Info</label>
+              <p>{{ missing?.articledescription || "--" }}</p>
             </div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- Gutter -->
-    <div class="gutter"></div>
+    <!-- Divider -->
+    <div class="divider" role="separator" aria-orientation="vertical"></div>
 
-    <!-- Unidentified Person Panel -->
-    <div class="detail-panel">
-      <h1 class="case-type">Unidentified Person</h1>
+    <!-- Unidentified Person Column -->
+    <div class="detail-panel" role="region" aria-labelledby="up-heading">
+      <h1 id="up-heading" class="case-type">Unidentified Person</h1>
       <h2 class="case-title">Case Number {{ unidentified?.namus_number }}</h2>
 
-      <section class="portrait-section">
+      <!-- Portrait + Demographics Card -->
+      <section
+        class="card card-portrait-demographics"
+        role="region"
+        aria-labelledby="up-demo-heading"
+      >
         <img
+          class="portrait-img"
           [src]="
             unidentified?.portrait_url ||
             'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
           "
-          alt="Unidentified portrait"
+          alt="Portrait"
         />
-      </section>
-
-      <section class="info-section demographics">
-        <header class="section-header"><h2>Demographics</h2></header>
+        <header class="section-header">
+          <h2 id="up-demo-heading">Demographics</h2>
+        </header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Biological Sex</label><br />
-              <span>{{ unidentified?.biological_sex || "--" }}</span>
+              <label>Sex</label
+              ><span>{{ unidentified?.biological_sex || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Race / Ethnicity</label><br />
-              <span>{{ unidentified?.primary_ethnicity || "--" }}</span>
+              <label>Race/Ethnicity</label
+              ><span>{{ unidentified?.primary_ethnicity || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Location Found</label><br />
-              <span>
-                {{ unidentified?.city || "--" }},
+              <label>Location Found</label
+              ><span
+                >{{ unidentified?.city || "--" }},
                 {{ unidentified?.county || "--" }},
-                {{ unidentified?.state || "--" }}
-              </span>
+                {{ unidentified?.state || "--" }}</span
+              >
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Estimated Age From</label><br />
-              <span>{{ unidentified?.estimated_age_from || "--" }}</span>
+              <label>Estimated Age From</label
+              ><span>{{ unidentified?.estimated_age_from || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Estimated Age To</label><br />
-              <span>{{ unidentified?.estimated_age_to || "--" }}</span>
-            </div>
-          </div>
-          <div class="detail-row">
-            <div class="attribute">
-              <label>Height</label><br />
-              <span>{{ unidentified?.height_from || "--" }} inches</span>
+              <label>Estimated Age To</label
+              ><span>{{ unidentified?.estimated_age_to || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Weight</label><br />
-              <span>{{ unidentified?.current_age || "--" }} lbs</span>
+              <label>Height</label
+              ><span>{{ unidentified?.height_from || "--" }} in</span>
+            </div>
+            <div class="attribute">
+              <label>Weight</label
+              ><span>{{ unidentified?.weight || "--" }} lbs</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="info-section physical-description">
-        <header class="section-header"><h2>Physical Description</h2></header>
+      <!-- Physical Description Card -->
+      <section
+        class="card card-physical"
+        role="region"
+        aria-labelledby="up-phys-heading"
+      >
+        <header class="section-header">
+          <h2 id="up-phys-heading">Physical Description</h2>
+        </header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Eyes: Left / Right</label><br />
-              <span
+              <label>Eyes (L / R)</label
+              ><span
                 >{{ unidentified?.left_eye_color || "--" }} /
                 {{ unidentified?.right_eye_color || "--" }}</span
               >
             </div>
             <div class="attribute">
-              <label>Hair Color</label><br />
-              <span>{{ unidentified?.hair_color || "--" }}</span>
+              <label>Hair Color</label
+              ><span>{{ unidentified?.hair_color || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Head Hair Description</label><br />
-              <span>{{ unidentified?.head_hair_description || "--" }}</span>
+              <label>Head Hair</label
+              ><span>{{ unidentified?.head_hair_description || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Facial Hair Description</label><br />
-              <span>{{ unidentified?.facial_hair_description || "--" }}</span>
+              <label>Facial Hair</label
+              ><span>{{ unidentified?.facial_hair_description || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Body Hair Description</label><br />
-              <span>{{ unidentified?.body_hair_description || "--" }}</span>
+              <label>Body Hair</label
+              ><span>{{ unidentified?.body_hair_description || "--" }}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="info-section circumstances">
-        <header class="section-header"><h2>Circumstances</h2></header>
+      <!-- Circumstances Card -->
+      <section
+        class="card card-circumstances"
+        role="region"
+        aria-labelledby="up-circ-heading"
+      >
+        <header class="section-header">
+          <h2 id="up-circ-heading">Circumstances</h2>
+        </header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Date Recovered</label><br />
-              <span>
-                {{
-                  unidentified?.date_found
-                    ? (unidentified.date_found | date: "longDate")
-                    : "--"
-                }}
-              </span>
+              <label>Date Recovered</label
+              ><span>{{ unidentified?.date_found | date: "longDate" }}</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <div class="attribute full-width">
+              <label>Recovery Info</label>
+              <p>{{ unidentified?.circumstances_of_recovery || "--" }}</p>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Recovery Info</label><br />
-              <span>{{ unidentified?.circumstances_of_recovery || "--" }}</span>
-            </div>
-          </div>
-          <div class="detail-row">
-            <div class="attribute">
-              <label>Articles Info</label><br />
-              <span>{{ unidentified?.articledescription || "--" }}</span>
+              <label>Articles Info</label>
+              <p>{{ unidentified?.articledescription || "--" }}</p>
             </div>
           </div>
         </div>

@@ -1,121 +1,121 @@
 <!-- src/app/search-comparison/search-comparison.component.html -->
-<h1>Search by Missing and Unidentified Persons</h1>
 
-<form [formGroup]="search">
-  <h2>Location</h2>
-  <div class="field-group">
-    <div>
-      <label for="state">State</label><br />
-      <input id="state" type="text" formControlName="state" />
-    </div>
-    <div>
-      <label for="city">City</label><br />
-      <input id="city" type="text" formControlName="city" />
-    </div>
-    <div>
-      <label for="county">County/Parish</label><br />
-      <input id="county" type="text" formControlName="county" />
-    </div>
-  </div>
+<h1 class="page-title">Search by Missing and Unidentified Persons</h1>
 
-  <h2>Description</h2>
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="sex">Sex</label><br />
-      <select id="sex" formControlName="sex">
-        <option></option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Unsure">Other/Unknown</option>
-      </select>
+<form [formGroup]="search" class="search-form">
+  <!-- Location -->
+  <section class="form-card">
+    <h2>Location</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="state">State</label>
+        <input id="state" type="text" formControlName="state" />
+      </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input id="city" type="text" formControlName="city" />
+      </div>
+      <div class="field">
+        <label for="county">County/Parish</label>
+        <input id="county" type="text" formControlName="county" />
+      </div>
     </div>
-    <div>
-      <label for="race">Race</label><br />
-      <select id="race" formControlName="race">
-        <option></option>
-        <option value="White / Caucasian">White/Caucasian</option>
-        <option value="Black / African American">Black/African American</option>
-        <option value="Asian">Asian</option>
-        <option value="Hawaiian / Pacific Islander">
-          Hawaiian/Pacific Islander
-        </option>
-        <option value="Hispanic / Latino">Hispanic/Latino</option>
-        <option value="American Indian / Alaska Native">
-          American Indian/Native Alaskan
-        </option>
-        <option value="Unknown">Other/Unknown</option>
-      </select>
-    </div>
-  </div>
+  </section>
 
-  <div class="field-group" style="justify-content: space-around">
-    <div>
-      <label for="hair-color">Hair Color</label><br />
-      <select id="hair-color" formControlName="hairColor">
-        <option></option>
-        <option value="Bald">Bald</option>
-        <option value="Black">Black</option>
-        <option value="Brown">Brown</option>
-        <option value="Gray or Partially Gray">Gray</option>
-        <option value="Blond/Strawberry">Blond/Strawberry</option>
-        <option value="Red/Auburn">Red/Auburn</option>
-        <option value="White">White</option>
-        <option value="Blue">Blue</option>
-        <option value="Unknown">Unknown</option>
-      </select>
+  <!-- Description -->
+  <section class="form-card">
+    <h2>Description</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="sex">Sex</label>
+        <select id="sex" formControlName="sex">
+          <option value=""></option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Unsure">Other/Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="race">Race</label>
+        <select id="race" formControlName="race">
+          <option value=""></option>
+          <option value="White / Caucasian">White / Caucasian</option>
+          <option value="Black / African American">
+            Black / African American
+          </option>
+          <option value="Asian">Asian</option>
+          <option value="Hawaiian / Pacific Islander">
+            Hawaiian / Pacific Islander
+          </option>
+          <option value="Hispanic / Latino">Hispanic / Latino</option>
+          <option value="American Indian / Alaska Native">
+            American Indian / Alaska Native
+          </option>
+          <option value="Unknown">Other/Unknown</option>
+        </select>
+      </div>
     </div>
-    <div>
-      <label for="eye-color">Eye Color</label><br />
-      <select id="eye-color" formControlName="eyeColor">
-        <option></option>
-        <option value="Brown">Brown</option>
-        <option value="Green">Green</option>
-        <option value="Blue">Blue</option>
-        <option value="Hazel">Hazel</option>
-        <option value="Maroon">Maroon</option>
-        <option value="Unknown">Unknown</option>
-        <option value="Other">Other</option>
-      </select>
+    <div class="field-group">
+      <div class="field">
+        <label for="hair-color">Hair Color</label>
+        <select id="hair-color" formControlName="hairColor">
+          <option value=""></option>
+          <option value="Bald">Bald</option>
+          <option value="Black">Black</option>
+          <option value="Brown">Brown</option>
+          <option value="Gray or Partially Gray">Gray or Partially Gray</option>
+          <option value="Blond/Strawberry">Blond/Strawberry</option>
+          <option value="Red/Auburn">Red/Auburn</option>
+          <option value="White">White</option>
+          <option value="Blue">Blue</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="eye-color">Eye Color</label>
+        <select id="eye-color" formControlName="eyeColor">
+          <option value=""></option>
+          <option value="Brown">Brown</option>
+          <option value="Green">Green</option>
+          <option value="Blue">Blue</option>
+          <option value="Hazel">Hazel</option>
+          <option value="Maroon">Maroon</option>
+          <option value="Unknown">Unknown</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <h2>Timing</h2>
-  <div class="field-group">
-    <div>
-      <label for="missing-from">Year Range (Missing)</label><br />
-      <input
-        id="missing-from"
-        type="text"
-        size="3"
-        formControlName="missingFrom"
-      />
-      to
-      <input
-        id="missing-to"
-        type="text"
-        size="3"
-        formControlName="missingTo"
-      /><br />
+  <!-- Timing -->
+  <section class="form-card">
+    <h2>Timing</h2>
+    <div class="field-group">
+      <div class="field">
+        <label for="missing-from">Year Range (Missing)</label>
+        <div class="range-group">
+          <input id="missing-from" type="text" formControlName="missingFrom" />
+          <span>to</span>
+          <input id="missing-to" type="text" formControlName="missingTo" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="body-found-from">Year Range (Body Found)</label>
+        <div class="range-group">
+          <input
+            id="body-found-from"
+            type="text"
+            formControlName="bodyFoundFrom"
+          />
+          <span>to</span>
+          <input id="body-found-to" type="text" formControlName="bodyFoundTo" />
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="body-found-from">Year Range (Body Found)</label><br />
-      <input
-        id="body-found-from"
-        type="text"
-        size="3"
-        formControlName="bodyFoundFrom"
-      />
-      to
-      <input
-        id="body-found-to"
-        type="text"
-        size="3"
-        formControlName="bodyFoundTo"
-      /><br />
-    </div>
-  </div>
+  </section>
 
-  <div class="submit-button">
+  <!-- Submit -->
+  <div class="submit-wrapper">
     <button
       type="button"
       (click)="onSubmit()"

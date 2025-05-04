@@ -1,19 +1,35 @@
+/*-----------------------------------
+  1) Global variables (for all components)
+-----------------------------------*/
+:root {
+  --bg-dark: #3e3939;
+  --card-bg: #666; /* light card background */
+  --divider-color: #555; /* panel boundary */
+  --header-underline: #d4af37; /* gold accent */
+  --text-light: #eee;
+  --text-muted: #ccc;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+/*-----------------------------------
+  2) Base html/body/headings
+-----------------------------------*/
 html,
 body {
   height: 100%;
   margin: 0;
 }
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #282323;
   color: white;
 }
-.content {
-  margin: 30px;
-}
+
 h1 {
   text-align: center;
 }
+
 h2 {
   text-align: center;
   font-size: 24px;
@@ -25,7 +41,9 @@ h2 {
   src: url("./assets/InknutAntiqua-Medium.ttf");
 }
 
-/* Style for search forms */
+/*-----------------------------------
+  3) Search-form styles
+-----------------------------------*/
 .field-group {
   display: flex;
   flex-wrap: wrap;
@@ -34,12 +52,14 @@ h2 {
   padding: 20px;
   background: #3e3939;
 }
+
 .submit-button {
   display: flex;
   justify-content: center;
   max-width: 7in;
   padding: 20px;
 }
+
 form {
   width: fit-content;
   margin: auto;
@@ -48,4 +68,18 @@ form {
 select,
 input {
   width: 3cm;
+}
+
+.home-page.conent {
+  margin: 0 !important;
+}
+
+/*-----------------------------------
+  4) Nav reset
+-----------------------------------*/
+/* 2) Make absolutely sure the nav has no bottom gap */
+nav {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
 }

@@ -1,61 +1,54 @@
 <div [ngSwitch]="table">
   <!-- Missing‐Person Detail View -->
   <ng-container *ngSwitchCase="'mp'">
-    <h1 class="case-title">
-      Case {{ caseDetails?.case_number || "Loading..." }}
-    </h1>
-
+    <h1 class="case-title">Case {{ caseDetails?.case_number }}</h1>
     <div class="main-container">
-      <!-- Navigation -->
-      <nav class="navigation">
-        <a class="back-link" [routerLink]="['/search/mp/results']">
-          &larr; Return to Search Results
-        </a>
-      </nav>
-
-      <!-- Portrait Section -->
-      <section class="portrait-section">
-        <img
-          class="portrait-img"
-          [src]="
-            caseDetails?.portrait_url ||
-            'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
-          "
-          width="300"
-          height="300"
-          alt="Portrait"
-        />
-      </section>
-
-      <!-- Demographics Section -->
-      <section class="info-section demographics">
+      <!-- Card 1: Portrait + Demographics -->
+      <section class="card card-demographics" aria-label="Demographics">
+        <nav class="navigation">
+          <a class="back-link" [routerLink]="['/search/mp/results']">
+            &larr; Return to Search Results
+          </a>
+        </nav>
+        <div class="portrait-section">
+          <img
+            class="portrait-img"
+            [src]="
+              caseDetails?.portrait_url ||
+              'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
+            "
+            alt="Portrait"
+            width="300"
+            height="300"
+          />
+        </div>
         <header class="section-header"><h2>Demographics</h2></header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>First Name</label><br />
+              <label>First Name</label>
               <span>{{ caseDetails?.first_name || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Middle Name</label><br />
+              <label>Middle Name</label>
               <span>{{ caseDetails?.middle_name || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Last Name</label><br />
+              <label>Last Name</label>
               <span>{{ caseDetails?.last_name || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Biological Sex</label><br />
+              <label>Sex</label>
               <span>{{ caseDetails?.biological_sex || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Race / Ethnicity</label><br />
+              <label>Race/Ethnicity</label>
               <span>{{ caseDetails?.race_or_ethnicity || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Location Found</label><br />
+              <label>Last Known Location</label>
               <span>
                 {{ caseDetails?.city || "--" }},
                 {{ caseDetails?.county || "--" }},
@@ -65,92 +58,84 @@
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Missing Age</label><br />
+              <label>Missing Age</label>
               <span>{{ caseDetails?.missing_age || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Current Age</label><br />
+              <label>Current Age</label>
               <span>{{ caseDetails?.current_age || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Height</label><br />
-              <span>{{ caseDetails?.height || "--" }} inches</span>
+              <label>Height</label>
+              <span>{{ caseDetails?.height || "--" }} in</span>
             </div>
             <div class="attribute">
-              <label>Weight</label><br />
+              <label>Weight</label>
               <span>{{ caseDetails?.weight || "--" }} lbs</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Physical Description Section -->
-      <section class="info-section physical-description">
+      <!-- Card 2: Physical Description -->
+      <section class="card card-physical" aria-label="Physical Description">
         <header class="section-header"><h2>Physical Description</h2></header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Eyes (Left / Right)</label><br />
-              <span
-                >{{ caseDetails?.left_eye_color || "--" }} /
-                {{ caseDetails?.right_eye_color || "--" }}</span
-              >
+              <label>Eyes (L / R)</label>
+              <span>
+                {{ caseDetails?.left_eye_color || "--" }} /
+                {{ caseDetails?.right_eye_color || "--" }}
+              </span>
             </div>
             <div class="attribute">
-              <label>Hair Color</label><br />
+              <label>Hair Color</label>
               <span>{{ caseDetails?.hair_color || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Head Hair Description</label><br />
+              <label>Head Hair</label>
               <span>{{ caseDetails?.hair_description || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Facial Hair Description</label><br />
+              <label>Facial Hair</label>
               <span>{{ caseDetails?.facial_hair_description || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Body Hair Description</label><br />
+              <label>Body Hair</label>
               <span>{{ caseDetails?.body_hair_description || "--" }}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Circumstances Section -->
-      <section class="info-section circumstances">
+      <!-- Card 3: Circumstances -->
+      <section class="card card-circumstances" aria-label="Circumstances">
         <header class="section-header"><h2>Circumstances</h2></header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Last Seen Date</label><br />
+              <label>Last Seen Date</label>
               <span>
-                {{
-                  caseDetails?.last_seen_date
-                    ? (caseDetails?.last_seen_date | date: "longDate")
-                    : "--"
-                }}
+                {{ caseDetails?.last_seen_date | date: "longDate" }}
               </span>
             </div>
           </div>
           <div class="detail-row">
-            <div class="attribute">
-              <label>Circumstances Detail</label><br />
+            <div class="attribute full-width">
+              <label>Details</label>
               <span>{{ caseDetails?.description || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Possible Sightings</label><br />
+              <label>Possible Sightings</label>
               <span>{{ caseDetails?.possible_sightings || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Articles Info</label><br />
+              <label>Clothing and Accessories</label>
               <span>{{ caseDetails?.articledescription || "--" }}</span>
             </div>
           </div>
@@ -159,49 +144,46 @@
     </div>
   </ng-container>
 
-  <!-- Unidentified‐person layout -->
+  <!-- Unidentified-person layout... (apply same card pattern) -->
+  <!-- Unidentified‐Person Detail View -->
+  <!-- Unidentified‐Person Detail View -->
   <ng-container *ngSwitchCase="'up'">
     <h1 class="case-title">
       Case {{ caseDetails?.namus_number || "Loading..." }}
     </h1>
-
     <div class="main-container">
-      <!-- Navigation -->
-      <nav class="navigation">
-        <a class="back-link" [routerLink]="['/search/up/results']">
-          &larr; Return to Search Results
-        </a>
-      </nav>
-
-      <!-- Portrait Section -->
-      <section class="portrait-section">
-        <img
-          class="portrait-img"
-          [src]="
-            caseDetails?.portrait_url ||
-            'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
-          "
-          width="300"
-          height="300"
-          alt="Portrait"
-        />
-      </section>
-
-      <!-- Demographics Section -->
-      <section class="info-section demographics">
+      <!-- Card 1: Portrait + Demographics -->
+      <section class="card card-demographics" aria-label="Demographics">
+        <nav class="navigation">
+          <a class="back-link" [routerLink]="['/search/up/results']">
+            &larr; Return to Search Results
+          </a>
+        </nav>
+        <div class="portrait-section">
+          <img
+            class="portrait-img"
+            [src]="
+              caseDetails?.portrait_url ||
+              'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'
+            "
+            alt="Portrait"
+            width="300"
+            height="300"
+          />
+        </div>
         <header class="section-header"><h2>Demographics</h2></header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Biological Sex</label><br />
+              <label>Biological Sex</label>
               <span>{{ caseDetails?.biological_sex || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Race / Ethnicity</label><br />
+              <label>Race / Ethnicity</label>
               <span>{{ caseDetails?.primary_ethnicity || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Location Found</label><br />
+              <label>Location Found</label>
               <span>
                 {{ caseDetails?.city || "--" }},
                 {{ caseDetails?.county || "--" }},
@@ -211,78 +193,66 @@
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Estimated Age From</label><br />
+              <label>Estimated Age From</label>
               <span>{{ caseDetails?.estimated_age_from || "--" }}</span>
             </div>
             <div class="attribute">
-              <label>Estimated Age To</label><br />
+              <label>Estimated Age To</label>
               <span>{{ caseDetails?.estimated_age_to || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Height</label><br />
-              <span>{{ caseDetails?.height_from || "--" }} inches</span>
+              <label>Height</label>
+              <span>{{ caseDetails?.height_from || "--" }} in</span>
             </div>
             <div class="attribute">
-              <label>Weight</label><br />
+              <label>Weight</label>
               <span>{{ caseDetails?.weight || "--" }} lbs</span>
-            </div>
-          </div>
-          <div class="detail-row">
-            <div class="attribute">
-              <label>Circumstances of Recovery</label><br />
-              <span>{{ caseDetails?.circumstances_of_recovery || "N/A" }}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Physical Description Section -->
-      <section class="info-section physical-description">
+      <!-- Card 2: Physical Description -->
+      <section class="card card-physical" aria-label="Physical Description">
         <header class="section-header"><h2>Physical Description</h2></header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Eyes: Left / Right</label><br />
+              <label>Eyes (L / R)</label>
               <span>
                 {{ caseDetails?.left_eye_color || "--" }} /
                 {{ caseDetails?.right_eye_color || "--" }}
               </span>
             </div>
             <div class="attribute">
-              <label>Hair Color</label><br />
+              <label>Hair Color</label>
               <span>{{ caseDetails?.hair_color || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Head Hair Description</label><br />
+              <label>Head Hair Description</label>
               <span>{{ caseDetails?.head_hair_description || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Facial Hair Description</label><br />
+              <label>Facial Hair Description</label>
               <span>{{ caseDetails?.facial_hair_description || "--" }}</span>
             </div>
-          </div>
-          <div class="detail-row">
             <div class="attribute">
-              <label>Body Hair Description</label><br />
+              <label>Body Hair Description</label>
               <span>{{ caseDetails?.body_hair_description || "--" }}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Circumstances Section -->
-      <section class="info-section circumstances">
+      <!-- Card 3: Circumstances -->
+      <section class="card card-circumstances" aria-label="Circumstances">
         <header class="section-header"><h2>Circumstances</h2></header>
         <div class="details">
           <div class="detail-row">
             <div class="attribute">
-              <label>Date Recovered</label><br />
+              <label>Date Recovered</label>
               <span>
                 {{
                   caseDetails?.date_found
@@ -293,24 +263,19 @@
             </div>
           </div>
           <div class="detail-row">
-            <div class="attribute">
-              <label>Recovery Info</label><br />
+            <div class="attribute full-width">
+              <label>Recovery Info</label>
               <span>{{ caseDetails?.circumstances_of_recovery || "--" }}</span>
             </div>
           </div>
           <div class="detail-row">
             <div class="attribute">
-              <label>Articles Info</label><br />
+              <label>Clothing and Accessories</label>
               <span>{{ caseDetails?.articledescription || "--" }}</span>
             </div>
           </div>
         </div>
       </section>
     </div>
-  </ng-container>
-
-  <!-- Fallback if table is neither 'mp' nor 'up' -->
-  <ng-container *ngSwitchDefault>
-    <p>Sorry, we don’t know how to display this case type.</p>
   </ng-container>
 </div>

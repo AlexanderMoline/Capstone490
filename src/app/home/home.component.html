@@ -1,33 +1,86 @@
-<div class="text-box">
-  <h1>Find matches. Make a difference.</h1>
-  <p>Comparing missing and unidentified cases just got easier.</p>
+<!-- Hero with scroll hint -->
+<div class="home-page content">
+  <div class="text-box">
+    <h1>Find matches. Make a difference.</h1>
+    <p>Comparing missing and unidentified cases just got easier.</p>
+  </div>
+
+  <!-- Burgundy divider -->
+  <div class="cta-divider"></div>
+
+  <!-- Call-to-action -->
+  <div class="selection-box">
+    <h1>Start now!</h1>
+    <button
+      class="pill-btn"
+      (click)="goToPage('search/mp')"
+      aria-label="Search Missing Persons"
+    >
+      <!-- Magnifying-glass icon -->
+      <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"
+        />
+      </svg>
+      Search Missing Persons
+    </button>
+
+    <button
+      class="pill-btn"
+      (click)="goToPage('search/up')"
+      aria-label="Search Unidentified Persons"
+    >
+      <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"
+        />
+      </svg>
+      Search Unidentified Persons
+    </button>
+
+    <button
+      class="pill-btn"
+      (click)="goToPage('search/persons')"
+      aria-label="Compare Cases"
+    >
+      <!-- Split-arrows icon -->
+      <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4 4 0 110-8 4 4 0 010 8z"
+        />
+      </svg>
+      Compare Cases
+    </button>
+  </div>
 </div>
 
-<div class="selection-box">
-  <h1>Start now!</h1>
-  <button (click)="goToPage('search/mp')">Search Missing Persons</button>
-  <button (click)="goToPage('search/up')">Search Unidentified Persons</button>
-  <button (click)="goToPage('search/persons')">Database Comparison</button>
-</div>
-
+<!-- Info cards -->
 <div class="info-box">
-  <h1>What is CAMUP?</h1>
-  <p>
-    Cross-Agency Missing and Unidentified Persons (CAMUP) is a searchable
-    database for both missing and unidentified persons in Louisiana, Texas,
-    Arkansas and Mississippi. CAMUP makes identifying similarities and potential
-    matches between missing and unidentified persons cases simpler and easier.
-    With a side-by-side format, users can easily search, filter, and compare
-    missing cases with unidentified cases. With modern DNA testing making the
-    identification process easier, CAMUP is a useful tool for finding potential
-    matches within the two categories to be further investigated and tested,
-    bringing both missing and unidentified cases another step closer to having
-    closure.
-  </p>
-  <p>
-    On CAMUP, we provide the options to search missing persons, unidentified
-    persons or use our simple database comparison search for efficient
-    comparison between both missing and unidentified persons. Whether you're an
-    investigator or a websleuth, CAMUP may be the tool you need
-  </p>
+  <h2>What is CAMUP?</h2>
+  <div class="cards-container">
+    <div class="card">
+      <h2>Search Missing Persons</h2>
+      <p>Quickly query across Louisiana, Texas, Arkansas &amp; Mississippi.</p>
+    </div>
+    <div class="card">
+      <h2>Search Unidentified Persons</h2>
+      <p>Filter on biological sex, age range, and other physical traits.</p>
+    </div>
+    <div class="card">
+      <h2>Compare Cases</h2>
+      <p>Side-by-side match-finding on shared traits.</p>
+    </div>
+  </div>
+  <div class="card-disclaimer">
+    <h2>Disclaimer</h2>
+    <p>
+      The CAMUP database contains visual images and text-based material to help
+      facilitate identifications in missing and unidentified persons cases. Some
+      CAMUP content may be graphic or offensive and may not be appropriate for
+      all viewers
+    </p>
+  </div>
 </div>
